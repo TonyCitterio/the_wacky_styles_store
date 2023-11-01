@@ -1,0 +1,9 @@
+.navbar {
+  padding: 1rem;
+  background-color: #212529;
+  color: #a663cc;
+}
+
+.navbar h1 {
+  font-family: "Rowdies", sans-serif;
+}
