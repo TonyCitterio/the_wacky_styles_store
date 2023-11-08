@@ -3,56 +3,7 @@ import classes from "./MainPage.module.css";
 import Navbar from "./general/Navbar";
 import Banner from "./content/Banner";
 import Products from "./content/Products";
-
-/* const MainPage = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error fetching data", error));
-  }, []);
-
-  console.log("renders");
-    useEffect(() => {
-    if (products.length > 0) {
-      console.log("First product title:", products[0].title);
-    }
-  }, [products]);
-
-   fetch("https://fakestoreapi.com/products/1")
-  .then((res) => res.json())
-  .then((json) => setProducts(json));
-
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
-  }, []);
-console.log(products)
-
-  useEffect(() => {
-    fetch("https://coffee-store-api-default-rtdb.europe-west1.firebasedatabase.app/products.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
-
-
-console.log(products[3].price)
-  return (
-    <>
-      <Navbar />
-      <main className={classes.main}>
-        <img>{products.image}</img>
-        <Banner />
-        <Products products={products} />
-      </main>
-    </>
-  );
-};
-
-export default MainPage; */
+import { pictures } from "./data/Pictures";
 
 const MainPage = () => {
   const [products, setProducts] = useState([]);
@@ -100,12 +51,17 @@ const MainPage = () => {
     return <div>Loading...</div>;
   }
 
+  const combinedData = products.map((product, index) => ({
+    ...product,
+    picture: pictures[index],
+  }));
+
   return (
     <>
       <Navbar />
       <main className={classes.main}>
         <Banner />
-        <Products products={products} />
+        <Products products={combinedData} />
       </main>
     </>
   );
