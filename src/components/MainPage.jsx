@@ -4,6 +4,8 @@ import Navbar from "./general/Navbar";
 import Banner from "./content/Banner";
 import Products from "./content/Products";
 import { pictures } from "./data/Pictures";
+import MediumRoast from "./content/MediumRoast";
+import defaultImage from "../pictures/coffee1.jpg";
 
 const MainPage = () => {
   const [products, setProducts] = useState([]);
@@ -51,10 +53,10 @@ const MainPage = () => {
     return <div>Loading...</div>;
   }
 
-  const combinedData = products.map((product, index) => ({
-    ...product,
-    picture: pictures[index],
-  }));
+  const combinedData = products.map((product, index) => {
+    const picture = pictures.length > index ? pictures[index] : defaultImage;
+    return { ...product, picture };
+  });
 
   return (
     <>
@@ -62,6 +64,7 @@ const MainPage = () => {
       <main className={classes.main}>
         <Banner />
         <Products products={combinedData} />
+        <MediumRoast products={combinedData} />
       </main>
     </>
   );

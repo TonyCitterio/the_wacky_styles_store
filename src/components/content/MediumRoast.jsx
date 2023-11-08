@@ -1,17 +1,18 @@
 import React from "react";
-import classes from "./Products.module.css";
+import classes from "./MediumRoast.module.css";
 
-const Products = ({ products }) => {
-  
+const MediumRoast = ({ products }) => {
+  const mediumRoast = products.filter((a) => a.roast === "Mellanrost");
+
   const getProduct = (product) => {
-    alert(`Produkt: ${product.name} Pris: ${product.price} ${product.picture}`);
+    alert(`Produkt: ${product.name} ${product.picture}`);
   };
-
+  
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <div className={classes.products}>
-          {products.map((product) => (
+        <div className={classes.productsGrid}>
+          {mediumRoast.map((product) => (
             <div key={product.id} className={classes.card}>
               <img
                 src={product.picture}
@@ -23,7 +24,7 @@ const Products = ({ products }) => {
               <p>{product.price}</p>
               <p>{product.description}</p>
               <p>{product.roast}</p>
-              <button onClick={() => getProduct(product)}>Get me</button>
+              <button onClick={() => getProduct(product)}>Get Me</button>
             </div>
           ))}
         </div>
@@ -32,4 +33,4 @@ const Products = ({ products }) => {
   );
 };
 
-export default Products;
+export default MediumRoast;
