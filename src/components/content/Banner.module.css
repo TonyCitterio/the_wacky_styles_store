@@ -1,11 +1,13 @@
 .container {
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .content {
-  width: clamp(35ch, 80%, 120ch);
+  width: clamp(35ch, 85%, 130ch);
+  height: 500px;
   display: flex;
   flex-wrap: wrap;
 }

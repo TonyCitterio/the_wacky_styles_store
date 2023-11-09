@@ -6,7 +6,7 @@
 }
 
 .content {
-  width: clamp(35ch, 80%, 120ch);
+  width: clamp(35ch, 85%, 130ch);
   display: flex;
   flex-wrap: wrap;
 }
@@ -20,6 +20,7 @@
 
 .card {
     padding: 1rem;
+    background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
