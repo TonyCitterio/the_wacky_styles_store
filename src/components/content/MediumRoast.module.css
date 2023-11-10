@@ -7,9 +7,7 @@
 }
 
 .content {
-    width: clamp(35ch, 80%, 120ch);
-    display: flex;
-    flex-wrap: wrap;
+    width: clamp(35ch, 80%, 130ch);
 }
 
 .productsGrid {
@@ -22,5 +20,5 @@
 .card {
     padding: 1rem;
     background-color: white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  
 }

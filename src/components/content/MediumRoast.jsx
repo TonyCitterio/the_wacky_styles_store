@@ -7,7 +7,7 @@ const MediumRoast = ({ products }) => {
   const getProduct = (product) => {
     alert(`Produkt: ${product.name} ${product.picture}`);
   };
-  
+  console.log("Medium")
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -16,7 +16,7 @@ const MediumRoast = ({ products }) => {
             <div key={product.id} className={classes.card}>
               <img
                 src={product.picture}
-                alt={`off coffee for a fake coffee site ${product.id}`}
+                alt={`off coffee for a fake coffee shop ${product.id}`}
                 height={300}
                 width={220}
               />
