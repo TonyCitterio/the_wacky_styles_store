@@ -17,7 +17,7 @@ console.log(products)
                 src={product.picture}
                 alt={`off coffee for a fake coffee site ${product.id}`}
                 height={300}
-                width={220}
+                width={200}
               />
               <h3>{product.name}</h3>
               <p>{product.price}</p>
