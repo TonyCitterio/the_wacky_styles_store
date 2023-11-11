@@ -1,12 +1,8 @@
 import React from "react";
 import classes from "./DarkRoast.module.css";
 
-const DarkRoast = ({ products }) => {
+const DarkRoast = ({ products, addProductToCart, removeProductFromCart }) => {
   const darkRoast = products.filter((a) => a.roast === "Mörkrost");
-
-  const getProduct = (product) => {
-    alert(`Produkt: ${product.name} Pris: ${product.price} ${product.picture} `)
-  }
 
   console.log(darkRoast);
 
@@ -26,7 +22,8 @@ const DarkRoast = ({ products }) => {
               <p>{product.price}</p>
               <p>{product.description}</p>
               <p>{product.roast}</p>
-              <button onClick={(() => getProduct(product))}>Get Me</button>
+              <button onClick={() => addProductToCart(product)}>Get Me</button>
+              <button onClick={() => removeProductFromCart(product)}>Ta Bort</button>
             </div>
           ))}
         </div>

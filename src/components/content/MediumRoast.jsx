@@ -1,13 +1,10 @@
 import React from "react";
 import classes from "./MediumRoast.module.css";
 
-const MediumRoast = ({ products }) => {
+const MediumRoast = ({ products, addProductToCart, removeProductFromCart }) => {
   const mediumRoast = products.filter((a) => a.roast === "Mellanrost");
 
-  const getProduct = (product) => {
-    alert(`Produkt: ${product.name} ${product.picture}`);
-  };
-  console.log("Medium")
+  console.log("Medium");
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -24,7 +21,10 @@ const MediumRoast = ({ products }) => {
               <p>{product.price}</p>
               <p>{product.description}</p>
               <p>{product.roast}</p>
-              <button onClick={() => getProduct(product)}>Get Me</button>
+              <button onClick={() => addProductToCart(product)}>Get Me</button>
+              <button onClick={() => removeProductFromCart(product)}>
+                Ta bort
+              </button>
             </div>
           ))}
         </div>

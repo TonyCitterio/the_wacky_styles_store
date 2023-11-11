@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import classes from "./MainPage.module.css";
 import Navbar from "./general/Navbar";
 import Banner from "./content/Banner";
@@ -16,8 +15,9 @@ const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [view, setView] = useState("products");
-  // const navigate = useNavigate();
+  const [cart, setCart] = useState([]);
 
+  // Fetching the products
   useEffect(() => {
     const abortController = new AbortController();
 
@@ -59,26 +59,61 @@ const MainPage = () => {
     return <div>Loading...</div>;
   }
 
+  // Combining the products array whit the pictures
   const combinedData = products.map((product, index) => {
     const picture = pictures.length > index ? pictures[index] : defaultImage;
     return { ...product, picture };
   });
 
+  // Adding and removing products to the shopping cart
+  const addProductToCart = (product) => {
+    setCart([...cart, product]);
+  };
+
+  const removeProductFromCart = (productToRemove) => {
+    const indexToRemove = cart.findIndex(
+      (product) => product.id === productToRemove.id
+    );
+    if (indexToRemove !== -1) {
+      const updatedCart = [...cart];
+      updatedCart.splice(indexToRemove, 1);
+      setCart(updatedCart);
+    }
+  };
+
+  console.log(cart);
+
   return (
     <>
-      <Navbar setView={setView} />
+      <Navbar setView={setView} cart={cart} />
       <main className={classes.main}>
         <Banner />
         {view === "products" ? (
           <Products products={combinedData} />
         ) : view === "lightRoast" ? (
-          <LightRoast products={combinedData} />
+          <LightRoast
+            products={combinedData}
+            addProductToCart={addProductToCart}
+            removeProductFromCart={removeProductFromCart}
+          />
         ) : view === "mediumRoast" ? (
-          <MediumRoast products={combinedData} />
+          <MediumRoast
+            products={combinedData}
+            addProductToCart={addProductToCart}
+            removeProductFromCart={removeProductFromCart}
+          />
         ) : view === "darkRoast" ? (
-          <DarkRoast products={combinedData} />
+          <DarkRoast
+            products={combinedData}
+            addProductToCart={addProductToCart}
+            removeProductFromCart={removeProductFromCart}
+          />
         ) : view === "extraDarkRoast" ? (
-          <ExtraDarkRoast products={combinedData} />
+          <ExtraDarkRoast
+            products={combinedData}
+            addProductToCart={addProductToCart}
+            removeProductFromCart={removeProductFromCart}
+          />
         ) : null}
       </main>
     </>
