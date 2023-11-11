@@ -1,15 +1,12 @@
 import React from "react";
 import classes from "./LightRoast.module.css";
 
-const LightRoast = ({ products }) => {
+const LightRoast = ({ products, addProductToCart, removeProductFromCart }) => {
   const lightRoast = products.filter((a) => a.roast === "Ljusrost");
 
-  const getProduct = (product) => {
-    alert(`Produkt: ${product.name} Pris: ${product.price} ${product.picture}`)
-    console.log("hej")
-  }
   console.log(products);
   console.log(lightRoast);
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -26,7 +23,8 @@ const LightRoast = ({ products }) => {
               <p>{product.price}</p>
               <p>{product.description}</p>
               <p>{product.roast}</p>
-              <button onClick={() => getProduct(product)}>Get Me</button>
+              <button onClick={() => addProductToCart(product)}>Get Me</button>
+              <button onClick={() => removeProductFromCart(product)}>Ta Bort</button>
             </div>
           ))}
         </div>

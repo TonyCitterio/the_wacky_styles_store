@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Navbar.module.css";
 
-const Navbar = ({ setView }) => {
+const Navbar = ({ setView, cart }) => {
   const handleViewChange = (newView) => {
     setView(newView);
   }
@@ -10,6 +10,7 @@ const Navbar = ({ setView }) => {
     <nav className={classes.navbar}>
       <div>
         <h1>The Wacky Coffee Shop</h1>
+        <p>{cart.length}</p>
       </div>
       <div>
         <ul className={classes.bigUl}>

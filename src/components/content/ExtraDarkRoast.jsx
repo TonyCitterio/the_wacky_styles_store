@@ -1,13 +1,11 @@
 import React from "react";
 import classes from "./ExtraDarkRoast.module.css";
 
-const ExtraDarkRoast = ({ products }) => {
+const ExtraDarkRoast = ({ products, addProductToCart, removeProductFromCart }) => {
   const extraDarkRoast = products.filter((a) => a.roast === "Extra Mörkrost");
 
-  const getProduct = (product) => {
-    alert(`Produkt: ${product.name} Pris: ${product.price} ${product.picture}`)
-  }
   console.log(extraDarkRoast);
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -19,7 +17,8 @@ const ExtraDarkRoast = ({ products }) => {
               <p>{product.price}</p>
               <p>{product.description}</p>
               <p>{product.roast}</p>
-              <button onClick={() => getProduct(product)}>Get Me</button>
+              <button onClick={() => addProductToCart(product)}>Get Me</button>
+              <button onClick={() => removeProductFromCart(product)}>Ta Bort</button>
             </div>
           ))}
         </div>
