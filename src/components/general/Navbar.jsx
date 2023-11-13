@@ -3,22 +3,34 @@ import { FaBasketShopping } from "react-icons/fa6";
 import classes from "./Navbar.module.css";
 import ModalCart from "../cart/ModalCart";
 
-const Navbar = ({ setView, cart }) => {
-  const [modalOpenCart, setModalOpenCart ] = useState(false)
+const Navbar = ({ setView, cart, setCart, removeProductFromCart, addProductToCart }) => {
+  const [modalOpenCart, setModalOpenCart] = useState(false);
   const handleViewChange = (newView) => {
     setView(newView);
-  }
+  };
   const openCart = () => {
-    setModalOpenCart(true)
-  }
+    setModalOpenCart(true);
+  };
 
   return (
     <nav className={classes.navbar}>
       <div>
         <h1>The Wacky Coffee Shop</h1>
         <p>{cart.length}</p>
-        <FaBasketShopping size={30} className={classes.cartIcon} onClick={openCart}  />
-      {modalOpenCart && <ModalCart setModalOpenCart={setModalOpenCart} cart={cart}/> }
+        <FaBasketShopping
+          size={30}
+          className={classes.cartIcon}
+          onClick={openCart}
+        />
+        {modalOpenCart && (
+          <ModalCart
+            setModalOpenCart={setModalOpenCart}
+            cart={cart}
+            setCart={setCart}
+            removeProductFromCart={removeProductFromCart}
+            addProductToCart={addProductToCart}
+          />
+        )}
       </div>
       <div>
         <ul className={classes.bigUl}>
@@ -26,7 +38,9 @@ const Navbar = ({ setView, cart }) => {
           <li onClick={() => handleViewChange("lightRoast")}>Ljusrost</li>
           <li onClick={() => handleViewChange("mediumRoast")}>Mellanrost</li>
           <li onClick={() => handleViewChange("darkRoast")}>Mörkrost</li>
-          <li onClick={() => handleViewChange("extraDarkRoast")}>Extra Mörkrost</li>
+          <li onClick={() => handleViewChange("extraDarkRoast")}>
+            Extra Mörkrost
+          </li>
         </ul>
       </div>
     </nav>

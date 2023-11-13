@@ -85,7 +85,13 @@ const MainPage = () => {
 
   return (
     <>
-      <Navbar setView={setView} cart={cart} />
+      <Navbar
+        setView={setView}
+        cart={cart}
+        setCart={setCart}
+        removeProductFromCart={removeProductFromCart}
+        addProductToCart={addProductToCart}
+      />
       <main className={classes.main}>
         <Banner />
         {view === "products" ? (
