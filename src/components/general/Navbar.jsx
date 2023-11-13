@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaBasketShopping } from "react-icons/fa6";
 import classes from "./Navbar.module.css";
+import ModalCart from "../cart/ModalCart";
 
 const Navbar = ({ setView, cart }) => {
+  const [modalOpenCart, setModalOpenCart ] = useState(false)
   const handleViewChange = (newView) => {
     setView(newView);
+  }
+  const openCart = () => {
+    setModalOpenCart(true)
   }
 
   return (
@@ -11,6 +17,8 @@ const Navbar = ({ setView, cart }) => {
       <div>
         <h1>The Wacky Coffee Shop</h1>
         <p>{cart.length}</p>
+        <FaBasketShopping size={30} className={classes.cartIcon} onClick={openCart}  />
+      {modalOpenCart && <ModalCart setModalOpenCart={setModalOpenCart} cart={cart}/> }
       </div>
       <div>
         <ul className={classes.bigUl}>
