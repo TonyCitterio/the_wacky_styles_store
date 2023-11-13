@@ -11,6 +11,10 @@
   font-family: "Rowdies", sans-serif;
 }
 
+.cartIcon {
+  cursor: pointer;
+}
+
 .bigUl {
   padding: 0;
   display: flex;
