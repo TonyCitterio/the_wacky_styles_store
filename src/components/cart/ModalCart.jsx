@@ -1,7 +1,39 @@
 import React from "react";
 import classes from "./ModalCart.module.css";
-const ModalCart = ({ setModalOpenCart, cart }) => {
-  console.log(cart);
+
+const ModalCart = ({
+  setModalOpenCart,
+  cart,
+  setCart,
+  removeProductFromCart,
+  addProductToCart,
+}) => {
+
+  const groupProductsByProductId = (cartProducts) => {
+    const groupedProducts = {};
+
+    cartProducts.forEach((product) => {
+      if (groupedProducts[product.id]) {
+        groupedProducts[product.id].quantity += 1;
+      } else {
+        groupedProducts[product.id] = { ...product, quantity: 1 };
+      }
+    });
+
+    return Object.values(groupedProducts);
+  };
+
+  const groupedCart = groupProductsByProductId(cart);
+  const cartIsEmpty = cart.length === 0;
+  const emptyCart = cart.length >= 1;
+
+  const calculateTotalPrice = (product) => {
+    const price = parseFloat(product.price.replace(/[^\d.-]/g, ""));
+    const totalPrice = product.quantity * price;
+
+    return totalPrice;
+  };
+
   return (
     <div className={classes.backdrop}>
       <div className={classes.cart}>
@@ -9,8 +41,9 @@ const ModalCart = ({ setModalOpenCart, cart }) => {
           <h3>Varukorg</h3>
           <button onClick={() => setModalOpenCart(false)}>Close</button>
         </div>
+        {cartIsEmpty ? <p>Din varukorg är tom</p> : null}
         <div className={classes.products}>
-          {cart.map((product) => (
+          {groupedCart.map((product) => (
             <div className={classes.card} key={product.id}>
               <img
                 src={product.picture}
@@ -19,8 +52,18 @@ const ModalCart = ({ setModalOpenCart, cart }) => {
                 width={65}
               />
               <p>{product.name}</p>
+              <p>{product.quantity}</p>
+              <p>Price per st: {product.price} kr</p>
+              <p>Summa {calculateTotalPrice(product)} kr</p>
+              <div>
+                <button onClick={() => addProductToCart(product)}>+</button>
+                <button onClick={() => removeProductFromCart(product)}>-</button>
+              </div>
             </div>
           ))}
+          {emptyCart ? (
+            <button onClick={() => setCart([])}>Tom varukorg</button>
+          ) : null}
         </div>
       </div>
     </div>
