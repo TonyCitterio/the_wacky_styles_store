@@ -95,7 +95,11 @@ const MainPage = () => {
       <main className={classes.main}>
         <Banner />
         {view === "products" ? (
-          <Products products={combinedData} />
+          <Products
+            products={combinedData}
+            addProductToCart={addProductToCart}
+            removeProductFromCart={removeProductFromCart}
+          />
         ) : view === "lightRoast" ? (
           <LightRoast
             products={combinedData}

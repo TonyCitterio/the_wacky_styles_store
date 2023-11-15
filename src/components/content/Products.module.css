@@ -25,3 +25,22 @@
 .card button {
   cursor: pointer;
 }
+
+.recommendations {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid pink;
+}
+
+.recommendations > *:nth-child(1) {
+  
+  flex: 1 1 50%;
+  background-color: bisque;
+}
+
+.recommendations > *:nth-child(2) {
+  flex: 1 1 50%;
+}
+
+
