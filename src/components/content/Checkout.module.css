@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: clamp(35ch, 70%, 130ch);
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+}
+
+.products {
+  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.card {
+  background-color: white;
+  width: 85%;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.products > *:nth-child(1) {
+  margin-top: 1.5rem;
+}
+
+.total {
+  padding-right: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.formContainer {
+  padding-block: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.form {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nameField {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.firstNameField,
+.lastNameField {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.areaField {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.zipField,
+.cityField {
+  display: flex;
+  flex-direction: column;
+}
+
+.zipField {
+  flex: 1 1 20%;
+}
+
+.cityField {
+  flex: 1 1 60%;
+}
