@@ -8,6 +8,7 @@ import MediumRoast from "./content/MediumRoast";
 import DarkRoast from "./content/DarkRoast";
 import ExtraDarkRoast from "./content/ExtraDarkRoast";
 import Checkout from "./content/Checkout";
+import Confirmation from "./content/Confirmation";
 import { pictures } from "./data/Pictures";
 import defaultImage from "../pictures/coffee1.jpg";
 
@@ -133,8 +134,8 @@ const MainPage = () => {
 
   const totalCartPrice = calculateTotalCartPrice();
   const shippingCost = calculateShippingCost(totalCartPrice);
-  
-//Check for how much shipping should cost
+
+  //Check for how much shipping should cost
   const handelShippingCostText = () => {
     const totalCartPrice = calculateTotalCartPrice();
     const leftToSmallShippingCost = 250 - totalCartPrice;
@@ -154,7 +155,18 @@ const MainPage = () => {
     };
     return shippingInfo;
   };
-
+  
+  //Adding shipping to total price of the products
+  const calculateTotalPriceWithShipping = () => {
+    const totalCartPrice = groupedCart.reduce((total, product) => {
+      const price = parseFloat(product.price.replace(/[^\d.-]/g, ""));
+      return total + (product.quantity * price);
+    }, 0);
+  
+    const shippingCost = calculateShippingCost(totalCartPrice);
+    return totalCartPrice + shippingCost;
+  };
+  
   return (
     <>
       <Navbar
@@ -166,11 +178,12 @@ const MainPage = () => {
         addProductToCart={addProductToCart}
         groupedCart={groupedCart}
         calculateTotalPrice={calculateTotalPrice}
-        calculateTotalCartPrice={calculateTotalCartPrice}
+        shippingCost={shippingCost}
         handelShippingCostText={handelShippingCostText}
+        calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
       />
       <main className={classes.main}>
-        {view !== "checkout" ? <Banner /> : null}
+        {view !== "checkout" && view !== "confirmation" ? <Banner /> : null}
         {view === "products" ? (
           <Products
             products={combinedData}
@@ -203,16 +216,22 @@ const MainPage = () => {
           />
         ) : view === "checkout" ? (
           <Checkout
-            cart={cart}
             groupedCart={groupedCart}
             calculateTotalPrice={calculateTotalPrice}
-            setCart={setCart}
             removeProductFromCart={removeProductFromCart}
             addProductToCart={addProductToCart}
             setView={setView}
-            calculateTotalCartPrice={calculateTotalCartPrice}
             shippingCost={shippingCost}
             handelShippingCostText={handelShippingCostText}
+            calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
+          />
+        ) : view === "confirmation" ? (
+          <Confirmation
+            groupedCart={groupedCart}
+            setCart={setCart}
+            calculateTotalPrice={calculateTotalPrice}
+            shippingCost={shippingCost}
+            calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
           />
         ) : null}
       </main>

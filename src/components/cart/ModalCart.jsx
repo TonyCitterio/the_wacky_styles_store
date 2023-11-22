@@ -10,8 +10,9 @@ const ModalCart = ({
   addProductToCart,
   groupedCart,
   calculateTotalPrice,
-  calculateTotalCartPrice,
+  shippingCost,
   handelShippingCostText,
+  calculateTotalPriceWithShipping,
 }) => {
   const cartIsEmpty = cart.length === 0;
 
@@ -59,7 +60,8 @@ const ModalCart = ({
           {!cartIsEmpty ? (
             <div>
               <div className={classes.totalPrice}>
-                <p>Summa: {calculateTotalCartPrice()}</p>
+                <p>Frakt: {shippingCost} kr</p>
+                <p>Att betala: {calculateTotalPriceWithShipping()} kr</p>
               </div>
               <button onClick={() => setCart([])}>Tom varukorg</button>
               <button onClick={() => handelViewChange("checkout")}>
