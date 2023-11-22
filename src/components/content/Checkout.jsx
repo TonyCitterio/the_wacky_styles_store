@@ -2,16 +2,14 @@ import React from "react";
 import classes from "./Checkout.module.css";
 
 const Checkout = ({
-  cart,
   groupedCart,
   calculateTotalPrice,
-  setCart,
   addProductToCart,
   removeProductFromCart,
   setView,
-  calculateTotalCartPrice,
   shippingCost,
   handelShippingCostText,
+  calculateTotalPriceWithShipping,
 }) => {
   const handelSubmit = (event) => {
     event.preventDefault();
@@ -34,6 +32,7 @@ const Checkout = ({
         <div className={classes.products}>
           {groupedCart.map((product) => (
             <div key={product.id} className={classes.card}>
+              <img src={product.picture} alt=" of a coffee for a fake coffee shop" />
               <h3>{product.name}</h3>
               <p>{product.roast}</p>
               <p>{product.quantity}</p>
@@ -59,9 +58,10 @@ const Checkout = ({
           </div>
           <div className={classes.total}>
             <p>Frakt: {shippingCost} kr</p>
-            <p>Summa: {calculateTotalCartPrice()} kr</p>
+            <p>Att betala: {calculateTotalPriceWithShipping()} kr</p>
           </div>
         </div>
+        <div><p>Det är ingen riktig beställning som görs utan det är bara en fake beställning på en fake online kaffe shop</p></div>
         <div className={classes.formContainer}>
           <form onSubmit={handelSubmit} className={classes.form}>
             <label htmlFor="email">Epost</label>
@@ -128,7 +128,7 @@ const Checkout = ({
           </form>
         </div>
         <div className={classes.order}>
-          <button>Beställ</button>
+          <button onClick={() => setView("confirmation")}>Beställ</button>
         </div>
       </div>
     </div>

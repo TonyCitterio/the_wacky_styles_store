@@ -12,8 +12,9 @@ const Navbar = ({
   addProductToCart,
   groupedCart,
   calculateTotalPrice,
-  calculateTotalCartPrice,
+  shippingCost,
   handelShippingCostText,
+  calculateTotalPriceWithShipping,
 }) => {
   const [modalOpenCart, setModalOpenCart] = useState(false);
   const isClickable = cart.length >= 1;
@@ -26,7 +27,7 @@ const Navbar = ({
     <nav className={classes.navbar}>
       <div>
         <h1>The Wacky Coffee Shop</h1>
-        {view !== "checkout" ? (
+        {view !== "checkout" && view !== "confirmation" ? (
           <div>
             <p>{cart.length}</p>
             <FaBasketShopping
@@ -44,8 +45,9 @@ const Navbar = ({
                 addProductToCart={addProductToCart}
                 groupedCart={groupedCart}
                 calculateTotalPrice={calculateTotalPrice}
-                calculateTotalCartPrice={calculateTotalCartPrice}
+                shippingCost={shippingCost}
                 handelShippingCostText={handelShippingCostText}
+                calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
               />
             )}
             <button
@@ -58,7 +60,7 @@ const Navbar = ({
           </div>
         ) : null}
       </div>
-      {view !== "checkout" ? (
+      {view !== "checkout" && view !== "confirmation" ? (
         <div>
           <ul className={classes.bigUl}>
             <li onClick={() => setView("products")}>Hem</li>
