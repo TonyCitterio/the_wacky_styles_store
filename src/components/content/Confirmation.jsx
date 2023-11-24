@@ -7,8 +7,35 @@ const Confirmation = ({
   calculateTotalPrice,
   calculateTotalPriceWithShipping,
   shippingCost,
+  userData,
+  setUserData,
 }) => {
   const CurrentDate = new Date().toLocaleDateString();
+
+  const handleClose = () => {
+    setCart([]);
+    setUserData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+      street: "",
+      zip: "",
+      city: "",
+    });
+  };
+
+  const formatStrings = (str) => {
+    if (str && typeof str === "string") {
+      return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+    return "";
+  };
+
+  const formatEmail = (email) => {
+    return email.toLowerCase();
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -27,16 +54,24 @@ const Confirmation = ({
           <div className={classes.customerInfo}>
             <div>
               <p className={classes.bold}>Beställare:</p>
-              <p>Namn: </p>
-              <p>Telefon:</p>
-              <p>E-post:</p>
+              <p>
+                Namn: {formatStrings(userData.firstName)}{" "}
+                {formatStrings(userData.lastName)}
+              </p>
+              <p>Telefon: {userData.phoneNumber}</p>
+              <p>E-post: {formatEmail(userData.email)}</p>
               <p>Orderdatum: {CurrentDate}</p>
             </div>
             <div>
               <p className={classes.bold}>Leveransaddres:</p>
-              <p>John Doe</p>
-              <p>Gatunamn 1</p>
-              <p>12345 Malmö</p>
+              <p>
+                {formatStrings(userData.firstName)}{" "}
+                {formatStrings(userData.lastName)}
+              </p>
+              <p>{formatStrings(userData.street)}</p>
+              <p>
+                {userData.zip} {formatStrings(userData.city)}
+              </p>
             </div>
           </div>
           <table className={classes.productTable}>
@@ -59,14 +94,18 @@ const Confirmation = ({
               ))}
             </tbody>
           </table>
-          <div className={classes.totalPriceContainer}><p>Frakt: {shippingCost} kr</p>
-          <p><span className={classes.totalPrice}>Totaltbelopp: </span>{calculateTotalPriceWithShipping()} kr</p>
+          <div className={classes.totalPriceContainer}>
+            <p>Frakt: {shippingCost} kr</p>
+            <p>
+              <span className={classes.totalPrice}>Totaltbelopp: </span>
+              {calculateTotalPriceWithShipping()} kr
+            </p>
           </div>
         </div>
         <div className="">
           <p>Tack för att du valt att handla hos The Wacky Coffee Shop</p>
           <p>Välkommen åter!</p>
-          <button onClick={() => setCart([])}>Stäng</button>
+          <button onClick={handleClose}>Stäng</button>
         </div>
       </div>
     </div>
