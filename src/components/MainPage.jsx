@@ -20,6 +20,15 @@ const MainPage = () => {
   const [cart, setCart] = useState([]);
   const shippingBig = 99;
   const shippingSmall = 49;
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    street: "",
+    zip: "",
+    city: "",
+  });
 
   // Fetching the products
   useEffect(() => {
@@ -155,18 +164,18 @@ const MainPage = () => {
     };
     return shippingInfo;
   };
-  
+
   //Adding shipping to total price of the products
   const calculateTotalPriceWithShipping = () => {
     const totalCartPrice = groupedCart.reduce((total, product) => {
       const price = parseFloat(product.price.replace(/[^\d.-]/g, ""));
-      return total + (product.quantity * price);
+      return total + product.quantity * price;
     }, 0);
-  
+
     const shippingCost = calculateShippingCost(totalCartPrice);
     return totalCartPrice + shippingCost;
   };
-  
+
   return (
     <>
       <Navbar
@@ -224,6 +233,8 @@ const MainPage = () => {
             shippingCost={shippingCost}
             handelShippingCostText={handelShippingCostText}
             calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
+            userData={userData}
+            setUserData={setUserData}
           />
         ) : view === "confirmation" ? (
           <Confirmation
@@ -232,6 +243,8 @@ const MainPage = () => {
             calculateTotalPrice={calculateTotalPrice}
             shippingCost={shippingCost}
             calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
+            userData={userData}
+            setUserData={setUserData}
           />
         ) : null}
       </main>
