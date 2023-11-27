@@ -141,7 +141,7 @@ const Checkout = ({
         </div>
         <div className={classes.formContainer}>
           <form onSubmit={handelSubmit} className={classes.form}>
-            <label htmlFor="email">Epost</label>
+            <label htmlFor="email">Epost <span className={classes.red}>*</span></label>
             <input
               type="email"
               name="email"
@@ -155,7 +155,7 @@ const Checkout = ({
             {errors.email && <p>{errors.email}</p>}
             <div className={classes.nameField}>
               <div className={classes.firstNameField}>
-                <label htmlFor="firstName">Förnamn</label>
+                <label htmlFor="firstName">Förnamn <span className={classes.red}>*</span></label>
                 <input
                   type="text"
                   name="firstName"
@@ -169,7 +169,7 @@ const Checkout = ({
                 {errors.firstName && <p>{errors.firstName}</p>}
               </div>
               <div className={classes.lastNameField}>
-                <label htmlFor="lastName">Efternamn</label>
+                <label htmlFor="lastName">Efternamn <span className={classes.red}>*</span></label>
                 <input
                   type="text"
                   name="lastName"
@@ -183,7 +183,7 @@ const Checkout = ({
                 {errors.lastName && <p>{errors.lastName}</p>}
               </div>
             </div>
-            <label htmlFor="phoneNumber">Telefon</label>
+            <label htmlFor="phoneNumber">Telefon <span className={classes.red}>*</span></label>
             <input
               type="tel"
               name="phoneNumber"
@@ -195,7 +195,7 @@ const Checkout = ({
               onFocus={() => handleFocus("phoneNumber")}
             />
             {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-            <label htmlFor="street">Adress</label>
+            <label htmlFor="street">Adress <span className={classes.red}>*</span></label>
             <input
               type="text"
               name="street"
@@ -209,7 +209,7 @@ const Checkout = ({
             {errors.street && <p>{errors.street}</p>}
             <div className={classes.areaField}>
               <div className={classes.zipField}>
-                <label htmlFor="zip">Postnummer</label>
+                <label htmlFor="zip">Postnummer <span className={classes.red}>*</span></label>
                 <input
                   type="text"
                   name="zip"
@@ -223,7 +223,7 @@ const Checkout = ({
                 {errors.zip && <p>{errors.zip}</p>}
               </div>
               <div className={classes.cityField}>
-                <label htmlFor="city">Ort</label>
+                <label htmlFor="city">Ort <span className={classes.red}>*</span></label>
                 <input
                   type="text"
                   name="city"

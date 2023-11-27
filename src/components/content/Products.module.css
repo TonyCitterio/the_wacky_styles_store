@@ -17,24 +17,73 @@
 }
 
 .card {
-    padding: 1rem;
-    background-color: white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 1rem;
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.card button {
+.card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+}
+
+.buttonContainer {
+  height: 32px;
+  display: flex;
+}
+
+.onlyBuyButton {
+  width: 118px;
+  color: white;
+  background-color: #a663cc;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.2rem;
   cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.addAndRemoveButtons {
+  width: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #a663cc;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.quantity {
+  margin-inline: 3px;
+  width: 58px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  /* background-color: #a563ccc9; */
+  background-color: #a563ccd2;
+  border-radius: 0.2rem;
+  font-family: "Rowdies", sans-serif;
+}
+
+.quantity p {
+  margin: 0;
 }
 
 .recommendations {
   margin-top: 4rem;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid pink;
+}
+
+.content h2 {
+  font-family: "Rubik", sans-serif;
 }
 
 .recommendations > *:nth-child(1) {
-  
   flex: 1 1 50%;
   background-color: bisque;
 }
@@ -42,5 +91,3 @@
 .recommendations > *:nth-child(2) {
   flex: 1 1 50%;
 }
-
-

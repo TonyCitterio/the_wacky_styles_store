@@ -36,3 +36,29 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   border-radius: 0.2rem;
 }
+
+.buttonContainer {
+  height: 28px;
+  display: flex;
+}
+
+.buttonContainer button {
+  width: 25px;
+  background-color: #a563ccc9;
+  border: none;
+  color: white;
+  border-radius: 0.2rem;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.quantity {
+  margin-inline: 0.2rem;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #a663cc;
+  border-radius: 0.2rem;
+}
