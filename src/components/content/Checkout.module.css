@@ -91,3 +91,7 @@
 .cityField {
   flex: 1 1 60%;
 }
+
+.red {
+  color: #c1121f;
+}

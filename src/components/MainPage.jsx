@@ -198,6 +198,7 @@ const MainPage = () => {
             products={combinedData}
             addProductToCart={addProductToCart}
             removeProductFromCart={removeProductFromCart}
+            groupedCart={groupedCart}
           />
         ) : view === "lightRoast" ? (
           <LightRoast

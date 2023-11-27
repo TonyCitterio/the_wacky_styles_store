@@ -46,14 +46,12 @@ const ModalCart = ({
                 width={65}
               />
               <p>{product.name}</p>
-              <p>{product.quantity}</p>
-              <p>Price per st: {product.price} kr</p>
-              <p>Summa {calculateTotalPrice(product)} kr</p>
-              <div>
+              <p>Styckpris: {product.price}</p>
+              <p>Summa: {calculateTotalPrice(product)} kr</p>
+              <div className={classes.buttonContainer}>
+                <button onClick={() => removeProductFromCart(product)}>-</button>
+                <div className={classes.quantity}><p>{product.quantity}</p></div>
                 <button onClick={() => addProductToCart(product)}>+</button>
-                <button onClick={() => removeProductFromCart(product)}>
-                  -
-                </button>
               </div>
             </div>
           ))}
