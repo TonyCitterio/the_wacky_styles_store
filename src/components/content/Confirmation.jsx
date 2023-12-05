@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./Confirmation.module.css";
 
 const Confirmation = ({
+  setView,
   groupedCart,
   setCart,
   calculateTotalPrice,
@@ -23,6 +24,7 @@ const Confirmation = ({
       zip: "",
       city: "",
     });
+    setView("products")
   };
 
   const formatStrings = (str) => {
