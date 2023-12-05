@@ -9,6 +9,7 @@
 
 .navbar h1 {
   font-family: "Rowdies", sans-serif;
+  cursor: pointer;
 }
 
 .cartIcon {

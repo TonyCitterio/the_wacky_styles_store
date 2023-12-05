@@ -18,6 +18,7 @@ import coffee17 from "../../pictures/coffee17.jpg";
 import coffee18 from "../../pictures/coffee18.jpg";
 import coffee19 from "../../pictures/coffee19.jpg";
 import coffee20 from "../../pictures/coffee20.jpg";
+import coffee21 from "../../pictures/coffee21.jpg"
 
 export const pictures = [
   coffee1,
@@ -40,4 +41,5 @@ export const pictures = [
   coffee18,
   coffee19,
   coffee20,
+  coffee21,
 ];

@@ -64,12 +64,6 @@ const MainPage = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (cart.length === 0) {
-      setView("products");
-    }
-  }, [cart.length]);
-
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -205,32 +199,36 @@ const MainPage = () => {
             products={combinedData}
             addProductToCart={addProductToCart}
             removeProductFromCart={removeProductFromCart}
+            groupedCart={groupedCart}
           />
         ) : view === "mediumRoast" ? (
           <MediumRoast
             products={combinedData}
             addProductToCart={addProductToCart}
             removeProductFromCart={removeProductFromCart}
+            groupedCart={groupedCart}
           />
         ) : view === "darkRoast" ? (
           <DarkRoast
             products={combinedData}
             addProductToCart={addProductToCart}
             removeProductFromCart={removeProductFromCart}
+            groupedCart={groupedCart}
           />
         ) : view === "extraDarkRoast" ? (
           <ExtraDarkRoast
             products={combinedData}
             addProductToCart={addProductToCart}
             removeProductFromCart={removeProductFromCart}
+            groupedCart={groupedCart}
           />
         ) : view === "checkout" ? (
           <Checkout
+            setView={setView}
             groupedCart={groupedCart}
             calculateTotalPrice={calculateTotalPrice}
             removeProductFromCart={removeProductFromCart}
             addProductToCart={addProductToCart}
-            setView={setView}
             shippingCost={shippingCost}
             handelShippingCostText={handelShippingCostText}
             calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
@@ -239,6 +237,7 @@ const MainPage = () => {
           />
         ) : view === "confirmation" ? (
           <Confirmation
+            setView={setView}
             groupedCart={groupedCart}
             setCart={setCart}
             calculateTotalPrice={calculateTotalPrice}

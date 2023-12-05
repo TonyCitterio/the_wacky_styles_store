@@ -26,7 +26,7 @@ const Navbar = ({
   return (
     <nav className={classes.navbar}>
       <div>
-        <h1>The Wacky Coffee Shop</h1>
+        <h1 onClick={() => setView("products")}>The Wacky Coffee Shop</h1>
         {view !== "checkout" && view !== "confirmation" ? (
           <div>
             <p>{cart.length}</p>

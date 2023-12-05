@@ -9,68 +9,151 @@
   width: clamp(35ch, 85%, 130ch);
 }
 
-.products {
+.productsGrid {
   width: 100%;
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .card {
-  padding: 1rem;
+  padding: 1.7rem;
+  position: relative;
+  height: 430px;
   background-color: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.card h3 {
-  font-family: "Playfair Display", serif;
-  font-size: 1.3rem;
-}
-
-.buttonContainer {
-  height: 32px;
+.cardTop {
+  margin-top: 0.55rem;
   display: flex;
+  justify-content: center;
 }
 
-.onlyBuyButton {
-  width: 118px;
-  color: white;
-  background-color: #a663cc;
-  font-size: 1rem;
-  border: none;
-  border-radius: 0.2rem;
-  cursor: pointer;
-  font-size: 1.1rem;
+.imgContainer {
+  position: relative;
 }
 
-.addAndRemoveButtons {
-  width: 27px;
+.imgContainer img {
+  border-radius: 0.5rem;
+}
+
+.roastContainer {
+  padding-block: 0.2rem;
+  width: 155px;
+  position: absolute;
+  top: 9px;
+  left: -54px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   background-color: #a663cc;
-  font-size: 1.2rem;
+  transform: rotate(320deg);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.roastContainer p {
+  margin: 0;
+}
+
+.priceContainer {
+  width: 55px;
+  height: 55px;
+  position: absolute;
+  bottom: -14px;
+  left: -16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #a663cc;
+  font-size: 0.95rem;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.cardMiddle {
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.cardMiddle h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+}
+
+.cardMiddle p {
+  line-height: 1.25rem;
+  margin: 0;
+}
+
+.cardBottom {
+  margin-top: 1rem;
+  padding-inline: 1.5rem;
+  width: 100%;
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.buttonContainer {
+  height: 30px;
+  display: flex;
+  margin-top: 0.1rem;
+}
+
+.onlyBuyButton {
+  width: 132px;
+  color: white;
+  background-color: #a663cc;
+  font-size: 1.1rem;
   border: none;
-  border-radius: 0.2rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.addAndRemoveButtons {
+  width: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #a663cc;
+  border-radius: 0.3rem;
+  border: none;
   cursor: pointer;
 }
 
 .quantity {
   margin-inline: 3px;
-  width: 58px;
+  width: 74px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
-  /* background-color: #a563ccc9; */
   background-color: #a563ccd2;
-  border-radius: 0.2rem;
-  font-family: "Rowdies", sans-serif;
-}
-
-.quantity p {
-  margin: 0;
+  font-weight: bold;
+  border-radius: 0.3rem;
 }
 
 .recommendations {

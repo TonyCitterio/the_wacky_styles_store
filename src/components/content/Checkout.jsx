@@ -95,7 +95,7 @@ const Checkout = ({
     <div className={classes.container}>
       <div className={classes.content}>
         <div className={classes.header}>
-          <h2>Varukorg</h2>
+          <h2>Din varukorg</h2>
           <button onClick={() => setView("products")}>Fortsätt handla</button>
         </div>
         <div className={classes.products}>
