@@ -1,6 +1,7 @@
 import React from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import classes from "./Products.module.css";
+import picture from "../../pictures/coffeeRecommendations.jpg";
 
 const Products = ({
   products,
@@ -9,13 +10,15 @@ const Products = ({
   groupedCart,
 }) => {
   const topCoffee = products.slice(1, 5);
-  const recommendation = products.slice(9, 11);
+  const recommendation = products.slice(9, 13);
 
   const getProductInCart = (id) => {
-    const numberOfProductsInCart = groupedCart.find((product) => product.id === id);
+    const numberOfProductsInCart = groupedCart.find(
+      (product) => product.id === id
+    );
     return numberOfProductsInCart ? numberOfProductsInCart.quantity : 0;
   };
-  
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -31,7 +34,7 @@ const Products = ({
                   <img
                     src={product.picture}
                     alt={`off coffee for a fake coffee shop ${product.id}`}
-                    height={200}
+                    height={196}
                     width={162}
                   />
                   <div className={classes.priceContainer}>
@@ -45,7 +48,7 @@ const Products = ({
               </div>
               <div className={classes.cardBottom}>
                 <div className={classes.buttonContainer}>
-                  {getProductInCart(product.id) === 0 ? (
+                {getProductInCart(product.id) === 0 ? (
                     <button className={classes.onlyBuyButton} onClick={() => addProductToCart(product)}>Köp</button>
                   ) : (
                     <>
@@ -63,10 +66,13 @@ const Products = ({
         </div>
         <div className={classes.recommendations}>
           <div>
-            <h2>Tjabba</h2>
+            <h2>Vi rekomenderar</h2>
           </div>
           <div>
-          <div className={classes.productsGrid}>
+            <img src={picture} alt=" of a laptop and a nota that says Coffee" />
+          </div>
+        </div>
+        <div className={classes.productsGrid}>
           {recommendation.map((product) => (
             <div key={product.id} className={classes.card}>
               <div className={classes.cardTop}>
@@ -77,7 +83,7 @@ const Products = ({
                   <img
                     src={product.picture}
                     alt={`off coffee for a fake coffee shop ${product.id}`}
-                    height={200}
+                    height={196}
                     width={162}
                   />
                   <div className={classes.priceContainer}>
@@ -91,7 +97,7 @@ const Products = ({
               </div>
               <div className={classes.cardBottom}>
                 <div className={classes.buttonContainer}>
-                  {getProductInCart(product.id) === 0 ? (
+                {getProductInCart(product.id) === 0 ? (
                     <button className={classes.onlyBuyButton} onClick={() => addProductToCart(product)}>Köp</button>
                   ) : (
                     <>
@@ -106,8 +112,6 @@ const Products = ({
               </div>
             </div>
           ))}
-        </div>
-          </div>
         </div>
       </div>
     </div>
