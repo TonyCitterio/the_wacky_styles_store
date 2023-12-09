@@ -30,7 +30,10 @@
   padding: 2rem;
   flex: 1 1 40%;
   min-width: 25ch;
-  background-color: #cad2c5;
+  /* background-color: #cad2c5; */
+  /* background-color: #99c1b9; */
+  /* background-color: #f1e3d3; */
+  background-color: #f2d0a9;
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem;
 }
