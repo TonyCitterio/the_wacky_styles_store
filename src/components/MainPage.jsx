@@ -9,6 +9,7 @@ import DarkRoast from "./content/DarkRoast";
 import ExtraDarkRoast from "./content/ExtraDarkRoast";
 import Checkout from "./content/Checkout";
 import Confirmation from "./content/Confirmation";
+import Footer from "./general/Footer";
 import { pictures } from "./data/Pictures";
 import defaultImage from "../pictures/coffee1.jpg";
 
@@ -248,6 +249,7 @@ const MainPage = () => {
           />
         ) : null}
       </main>
+      <Footer />
     </>
   );
 };
