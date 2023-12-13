@@ -11,7 +11,7 @@ const ModalCart = ({
   groupedCart,
   calculateTotalPrice,
   shippingCost,
-  handelShippingCostText,
+  handleShippingCostText,
   calculateTotalPriceWithShipping,
 }) => {
   const cartIsEmpty = cart.length === 0;
@@ -26,7 +26,7 @@ const ModalCart = ({
     freeShippingText,
     isFreeShippingAvailable,
     isSmallShippingAvailable,
-  } = handelShippingCostText();
+  } = handleShippingCostText();
 
   return (
     <div className={classes.backdrop}>

@@ -18,6 +18,7 @@ const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [view, setView] = useState("products");
+  const [activeView, setActiveView] = useState("products")
   const [cart, setCart] = useState([]);
   const shippingBig = 99;
   const shippingSmall = 49;
@@ -140,7 +141,7 @@ const MainPage = () => {
   const shippingCost = calculateShippingCost(totalCartPrice);
 
   //Check for how much shipping should cost
-  const handelShippingCostText = () => {
+  const handleShippingCostText = () => {
     const totalCartPrice = calculateTotalCartPrice();
     const leftToSmallShippingCost = 250 - totalCartPrice;
     const leftToFreeShipping = 500 - totalCartPrice;
@@ -176,14 +177,17 @@ const MainPage = () => {
       <Navbar
         view={view}
         setView={setView}
+        activeView={activeView}
+        setActiveView={setActiveView}
         cart={cart}
         setCart={setCart}
         removeProductFromCart={removeProductFromCart}
         addProductToCart={addProductToCart}
         groupedCart={groupedCart}
         calculateTotalPrice={calculateTotalPrice}
+        calculateTotalCartPrice={calculateTotalCartPrice}
         shippingCost={shippingCost}
-        handelShippingCostText={handelShippingCostText}
+        handleShippingCostText={handleShippingCostText}
         calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
       />
       <main className={classes.main}>
@@ -226,12 +230,13 @@ const MainPage = () => {
         ) : view === "checkout" ? (
           <Checkout
             setView={setView}
+            setActiveView={setActiveView}
             groupedCart={groupedCart}
             calculateTotalPrice={calculateTotalPrice}
             removeProductFromCart={removeProductFromCart}
             addProductToCart={addProductToCart}
             shippingCost={shippingCost}
-            handelShippingCostText={handelShippingCostText}
+            handleShippingCostText={handleShippingCostText}
             calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
             userData={userData}
             setUserData={setUserData}
@@ -239,6 +244,7 @@ const MainPage = () => {
         ) : view === "confirmation" ? (
           <Confirmation
             setView={setView}
+            setActiveView={setActiveView}
             groupedCart={groupedCart}
             setCart={setCart}
             calculateTotalPrice={calculateTotalPrice}
