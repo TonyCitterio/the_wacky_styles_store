@@ -67,6 +67,9 @@ const Checkout = ({
               "Vänligen ange ett 5-siffrigt postnummer (exempelvis 12345)";
           }
           break;
+        default:
+          errorMessage = "Unhandled field for validation";
+          break;
       }
     }
 

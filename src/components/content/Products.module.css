@@ -20,7 +20,7 @@
 .card {
   padding: 1.7rem;
   position: relative;
-  height: 420px;
+  height: 425px;
   background-color: white;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -108,7 +108,7 @@
   margin-top: 1rem;
   width: 100%;
   position: absolute;
-  bottom: 24px;
+  bottom: 20px;
   left: 0;
   display: flex;
   justify-content: center;

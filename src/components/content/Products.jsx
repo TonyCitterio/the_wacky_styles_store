@@ -34,7 +34,7 @@ const Products = ({
                   <img
                     src={product.picture}
                     alt={`off coffee for a fake coffee shop ${product.id}`}
-                    height={196}
+                    height={185}
                     width={162}
                   />
                   <div className={classes.priceContainer}>
@@ -83,7 +83,7 @@ const Products = ({
                   <img
                     src={product.picture}
                     alt={`off coffee for a fake coffee shop ${product.id}`}
-                    height={196}
+                    height={185}
                     width={162}
                   />
                   <div className={classes.priceContainer}>
