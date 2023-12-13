@@ -1,29 +1,94 @@
 .navbar {
   padding: 1rem;
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: #212529;
   color: #a663cc;
 }
 
-.navbar h1 {
-  font-family: "Rowdies", sans-serif;
-  cursor: pointer;
+.navbarMiddle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.cartIcon {
+.navbar h1 {
+  margin-bottom: 0.2rem;
+  font-family: "Rowdies", sans-serif;
+  font-size: 2rem;
   cursor: pointer;
 }
 
 .bigUl {
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0.3rem;
+  margin-bottom: 1rem;
   display: flex;
 }
 
 .bigUl li {
   margin-right: 1rem;
   list-style-type: none;
+  transition: color 0.2s ease-in-out;
   cursor: pointer;
 }
 
+.bigUl li:hover {
+  color: #83b692;
+}
+
+.bigUl li.active {
+  color: #83b692;
+}
+
+.bigUl > *:last-child {
+  margin-right: 0;
+}
+
+.navbarRightSide {
+  position: absolute;
+  right: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.shoppingCartContainer {
+  position: relative;
+  display: flex;
+}
+
+.itemsInCart {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-weight: bold;
+  background-color: #83b692;
+  font-size: 0.9rem;
+  border-radius: 50%;
+}
+
+.itemsInCart p {
+  margin: 0;
+}
+
+.cartIcon {
+  cursor: pointer;
+}
+
+.totalPrice {
+  margin-left: 1.25rem;
+  font-weight: bold;
+}
+
+.totalPrice p {
+  margin: 0;
+}

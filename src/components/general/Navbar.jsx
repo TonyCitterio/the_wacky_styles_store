@@ -6,18 +6,20 @@ import ModalCart from "../cart/ModalCart";
 const Navbar = ({
   view,
   setView,
+  activeView,
+  setActiveView,
   cart,
   setCart,
   removeProductFromCart,
   addProductToCart,
   groupedCart,
   calculateTotalPrice,
+  calculateTotalCartPrice,
   shippingCost,
-  handelShippingCostText,
+  handleShippingCostText,
   calculateTotalPriceWithShipping,
 }) => {
   const [modalOpenCart, setModalOpenCart] = useState(false);
-  const isClickable = cart.length >= 1;
 
   const openCart = () => {
     setModalOpenCart(true);
@@ -25,13 +27,25 @@ const Navbar = ({
 
   return (
     <nav className={classes.navbar}>
-      <div>
-        <h1 onClick={() => setView("products")}>The Wacky Coffee Shop</h1>
+      <div className={classes.navbarMiddle}>
+        <h1 onClick={() => {setView("products"); setActiveView("products")}}>The Wacky Coffee Shop</h1>
         {view !== "checkout" && view !== "confirmation" ? (
           <div>
-            <p>{cart.length}</p>
+            <ul className={classes.bigUl}>
+              <li className={activeView === "products" ? classes.active : ""} onClick={() => {setView("products"); setActiveView("products");}}>Hem</li>
+              <li className={activeView === "lightRoast" ? classes.active : ""} onClick={() => {setView("lightRoast"); setActiveView("lightRoast");}}>Ljusrost</li>
+              <li className={activeView === "mediumRoast" ? classes.active : ""} onClick={() => {setView("mediumRoast"); setActiveView("mediumRoast");}}>Mellanrost</li>
+              <li className={activeView === "darkRoast" ? classes.active : ""} onClick={() => {setView("darkRoast"); setActiveView("darkRoast");}}>Mörkrost</li>
+              <li className={activeView === "extraDarkRoast" ? classes.active : ""} onClick={() => {setView("extraDarkRoast"); setActiveView("extraDarkRoast");}}>Extra Mörkrost</li>
+            </ul>
+          </div>
+        ) : null}
+      </div>
+      {view !== "checkout" && view !== "confirmation" ? (
+        <div className={classes.navbarRightSide}>
+          <div className={classes.shoppingCartContainer}>
             <FaBasketShopping
-              size={30}
+              size={35}
               className={classes.cartIcon}
               onClick={openCart}
             />
@@ -46,29 +60,24 @@ const Navbar = ({
                 groupedCart={groupedCart}
                 calculateTotalPrice={calculateTotalPrice}
                 shippingCost={shippingCost}
-                handelShippingCostText={handelShippingCostText}
-                calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
+                handleShippingCostText={handleShippingCostText}
+                calculateTotalPriceWithShipping={
+                  calculateTotalPriceWithShipping
+                }
               />
             )}
-            <button
-              onClick={() => setView("checkout")}
-              disabled={!isClickable}
-              style={{ opacity: isClickable ? 1 : 0.5 }}
-            >
-              Till kassan
-            </button>
+            <div className={classes.itemsInCart}>
+              <p>{cart.length}</p>
+            </div>
           </div>
-        ) : null}
-      </div>
-      {view !== "checkout" && view !== "confirmation" ? (
-        <div>
-          <ul className={classes.bigUl}>
-            <li onClick={() => setView("products")}>Hem</li>
-            <li onClick={() => setView("lightRoast")}>Ljusrost</li>
-            <li onClick={() => setView("mediumRoast")}>Mellanrost</li>
-            <li onClick={() => setView("darkRoast")}>Mörkrost</li>
-            <li onClick={() => setView("extraDarkRoast")}>Extra Mörkrost</li>
-          </ul>
+          <div className={classes.totalPrice}>
+            {cart.length !== 0 ? (
+              <>
+                <p>Varukorg</p>
+                <p>{calculateTotalCartPrice()} kr</p>
+              </>
+            ) : null}
+          </div>
         </div>
       ) : null}
     </nav>

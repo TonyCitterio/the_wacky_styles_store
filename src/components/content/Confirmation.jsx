@@ -3,6 +3,7 @@ import classes from "./Confirmation.module.css";
 
 const Confirmation = ({
   setView,
+  setActiveView,
   groupedCart,
   setCart,
   calculateTotalPrice,
@@ -25,6 +26,7 @@ const Confirmation = ({
       city: "",
     });
     setView("products")
+    setActiveView("products")
   };
 
   const formatStrings = (str) => {

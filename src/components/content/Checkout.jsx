@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import classes from "./Checkout.module.css";
 
 const Checkout = ({
+  setView,
+  setActiveView,
   groupedCart,
   calculateTotalPrice,
   addProductToCart,
   removeProductFromCart,
-  setView,
   shippingCost,
-  handelShippingCostText,
+  handleShippingCostText,
   calculateTotalPriceWithShipping,
   userData,
   setUserData,
@@ -23,7 +24,7 @@ const Checkout = ({
     freeShippingText,
     isFreeShippingAvailable,
     isSmallShippingAvailable,
-  } = handelShippingCostText();
+  } = handleShippingCostText();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -96,7 +97,7 @@ const Checkout = ({
       <div className={classes.content}>
         <div className={classes.header}>
           <h2>Din varukorg</h2>
-          <button onClick={() => setView("products")}>Fortsätt handla</button>
+          <button onClick={() => {setView("products"); setActiveView("products")}}>Fortsätt handla</button>
         </div>
         <div className={classes.products}>
           {groupedCart.map((product) => (
