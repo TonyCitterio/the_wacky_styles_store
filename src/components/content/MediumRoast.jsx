@@ -21,6 +21,7 @@ const MediumRoast = ({
   return (
     <div className={classes.container}>
       <div className={classes.content}>
+        <h2>Smakresa med våra mellanrost kaffe</h2>
         <div className={classes.productsGrid}>
           {mediumRoast.map((product) => (
             <div key={product.id} className={classes.card}>
@@ -32,7 +33,7 @@ const MediumRoast = ({
                   <img
                     src={product.picture}
                     alt={`off coffee for a fake coffee shop ${product.id}`}
-                    height={200}
+                    height={185}
                     width={162}
                   />
                   <div className={classes.priceContainer}>

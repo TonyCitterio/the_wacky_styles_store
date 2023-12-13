@@ -20,6 +20,7 @@ const DarkRoast = ({
   return (
     <div className={classes.container}>
     <div className={classes.content}>
+      <h2>Brygg en perfekt morgon med våra Mörkrost</h2>
       <div className={classes.productsGrid}>
         {darkRoast.map((product) => (
           <div key={product.id} className={classes.card}>
@@ -31,7 +32,7 @@ const DarkRoast = ({
                 <img
                   src={product.picture}
                   alt={`off coffee for a fake coffee shop ${product.id}`}
-                  height={200}
+                  height={185}
                   width={162}
                 />
                 <div className={classes.priceContainer}>
