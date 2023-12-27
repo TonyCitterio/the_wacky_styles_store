@@ -68,7 +68,6 @@ const Checkout = ({
           }
           break;
         default:
-          errorMessage = "Unhandled field for validation";
           break;
       }
     }

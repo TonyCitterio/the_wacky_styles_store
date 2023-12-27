@@ -21,10 +21,6 @@ const Navbar = ({
 }) => {
   const [modalOpenCart, setModalOpenCart] = useState(false);
 
-  const openCart = () => {
-    setModalOpenCart(true);
-  };
-
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarMiddle}>
@@ -47,7 +43,7 @@ const Navbar = ({
             <FaBasketShopping
               size={35}
               className={classes.cartIcon}
-              onClick={openCart}
+              onClick={() => setModalOpenCart(true)}
             />
             {modalOpenCart && (
               <ModalCart
