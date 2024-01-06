@@ -2,62 +2,121 @@
   padding: 1rem;
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   background-color: #212529;
   color: #a663cc;
 }
 
-.navbarMiddle {
+.navbarTop {
+  position: relative;
+  width: clamp(20ch, 100%, 140ch);
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbarTop h1 {
+  margin-right: 2rem;
+  font-family: "Rowdies", sans-serif;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.searchContainer {
+  width: 50%;
+  position: relative;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.navbar h1 {
-  margin-bottom: 0.2rem;
-  font-family: "Rowdies", sans-serif;
-  font-size: 2rem;
-  cursor: pointer;
+.searchContainer input {
+  padding-left: 1.35rem;
+  width: 100%;
+  height: 35px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  box-shadow: 0 0 12px 2px #a663cc;
 }
 
-.bigUl {
-  padding-left: 0;
-  padding-right: 0.3rem;
-  margin-bottom: 1rem;
+.searchContainer input:focus {
+  outline: 3px solid #a663cc;
+}
+
+.searchContainer input::placeholder {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.searchContainer input.unfocused {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.searchDropdown {
+  padding-block: 0.7rem;
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+  background-color: #212529;
+  border-radius: 0.3rem;
+  border: 1px solid #a663cc;
+  box-shadow: 0 1px 6px 3px #a663cc;
+}
+
+.searchDropdown > *:first-child {
+  margin-top: 0;
+}
+
+.card {
+  padding: 0.35rem 0.55rem;
+  margin-top: 0.5rem;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.bigUl li {
-  margin-right: 1rem;
-  list-style-type: none;
-  transition: color 0.2s ease-in-out;
+.card p {
+  margin: 0 1rem;
+}
+
+.buttonContainer {
+  display: flex;
+  margin-left: 0.75rem;
+}
+
+.buttonContainer > *:first-child {
+  margin-right: 0.5rem;
+}
+
+.buttonContainer button {
+  height: 24px;
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a663cc;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
   cursor: pointer;
-}
-
-.bigUl li:hover {
-  color: #83b692;
-}
-
-.bigUl li.active {
-  color: #83b692;
-}
-
-.bigUl > *:last-child {
-  margin-right: 0;
 }
 
 .navbarRightSide {
   position: absolute;
-  right: 25px;
   display: flex;
   align-items: center;
+  right: 10px;
 }
 
 .shoppingCartContainer {
   position: relative;
   display: flex;
+}
+
+.cartIcon {
+  cursor: pointer;
 }
 
 .itemsInCart {
@@ -80,10 +139,6 @@
   margin: 0;
 }
 
-.cartIcon {
-  cursor: pointer;
-}
-
 .totalPrice {
   margin-left: 1.25rem;
   font-weight: bold;
@@ -91,4 +146,105 @@
 
 .totalPrice p {
   margin: 0;
+}
+
+.menuIcon {
+  position: relative;
+  top: 4px;
+  margin-left: 1rem;
+}
+
+.hrBigScreen {
+  width: 100%;
+  height: 2px;
+  background-color: #83b692;
+  border: none;
+}
+
+.hrSmallScreen {
+  width: 100%;
+  height: 2px;
+  background-color: #83b692;
+  border: none;
+}
+
+.bigUl {
+  margin: 0.5rem 0 0.2rem;
+  display: flex;
+  gap: 1.5rem;
+  font-family: "Rowdies", sans-serif;
+}
+
+.bigUl li {
+  list-style: none;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.bigUl li:hover {
+  color: #83b692;
+}
+
+.bigUl li.active {
+  color: #83b692;
+}
+
+@media (max-width: 1120px) {
+  .navbar h1 {
+    font-size: 1.65rem;
+    margin-right: 1.5rem;
+  }
+  .searchContainer {
+    width: 45%;
+  }
+  .searchContainer input {
+    height: 32px;
+  }
+  .bigUl li {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 880px) {
+  .navbar h1 {
+    margin: 0.3rem 0 0.7rem;
+  }
+  .searchContainer {
+    margin: 0.5rem 0 0.25rem;
+    width: 100%;
+  }
+  .navbarRightSide {
+    padding-top: 0.25rem;
+    top: 0;
+  }
+  .hrBigScreen {
+    display: none;
+  }
+  .totalPrice {
+    display: none;
+  }
+  .bigUl {
+    display: none;
+  }
+}
+
+@media (min-width: 881px) {
+  .menuIcon {
+   display: none;
+  }
+  .hrSmallScreen {
+    display: none;
+  }
+}
+
+@media (min-width: 466px) {
+  .smallHeading {
+    display: none;
+  }
+}
+
+@media (max-width: 465px){
+  .bigHeading {
+    display: none;
+  }
 }

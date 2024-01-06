@@ -21,7 +21,7 @@ const MediumRoast = ({
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <h2>Smakresa med våra mellanrost kaffe</h2>
+        <h2>Åk på smakresa med våra mellanrost kaffe</h2>
         <div className={classes.productsGrid}>
           {mediumRoast.map((product) => (
             <div key={product.id} className={classes.card}>
