@@ -175,6 +175,7 @@ const MainPage = () => {
   return (
     <>
       <Navbar
+        products={combinedData}
         view={view}
         setView={setView}
         activeView={activeView}

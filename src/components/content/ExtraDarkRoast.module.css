@@ -154,3 +154,10 @@
   font-weight: bold;
   border-radius: 0.3rem;
 }
+
+@media (max-width: 289px) {
+  .container {
+    padding-left: 1rem;
+    justify-content:unset;
+  }
+}

@@ -65,8 +65,6 @@ const ModalCart = ({
     isSmallShippingAvailable,
   } = handleShippingCostText();
 
-  
-
   return (
     <div className={`${classes.backdrop} ${isClosing ? classes.fadeOutBackdrop : classes.fadeInBackdrop}`}>
       <div className={`${classes.cart} ${isClosing ? classes.fadeOutCart : classes.fadeInCart}`} ref={cartRef}>
@@ -77,7 +75,7 @@ const ModalCart = ({
           <button
             className={classes.closeButton}
             onClick={handleClose}
-            aria-label="Close cart"
+            aria-label="Stäng kundvagn"
           >
             <IoCloseSharp size={26} />
           </button>

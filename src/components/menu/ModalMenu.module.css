@@ -1,0 +1,60 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100svh;
+  z-index: 100;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 140px;
+  right: 1rem;
+  padding: 1rem 2rem;
+  background-color: rgba(0, 0, 0, 0.72);
+}
+
+.dropdownMenu ul {
+  padding: 0;
+  text-align: center;
+  color: #d9d9d9;
+}
+
+.dropdownMenu li {
+  margin-bottom: 1rem;
+  list-style: none;
+  font-family: inherit;
+}
+
+@keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+  
+  .slideIn {
+    animation: slideIn 1s ease-in-out forwards;
+  }
+  
+  .slideOut {
+    animation: slideOut 1s ease-in-out forwards;
+  }
+  
