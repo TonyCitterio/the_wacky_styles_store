@@ -90,12 +90,12 @@ const ModalCart = ({
             )}
             {isSmallShippingAvailable && !isFreeShippingAvailable && (
               <>
-                <p style={{ color: "#a663cc" }}>{smallShippingText}</p>
+                <p style={{ color: "#a663cc", fontWeight: "bold" }}>{smallShippingText}</p>
                 <p>{freeShippingText}</p>
               </>
             )}
             {isSmallShippingAvailable && isFreeShippingAvailable && (
-              <p style={{ color: "#a663cc" }}>{freeShippingText}</p>
+              <p style={{ color: "#a663cc", fontWeight: "bold" }}>{freeShippingText}</p>
             )}
           </div>
         ) : null}

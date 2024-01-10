@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import classes from "./MediumRoast.module.css";
 
@@ -9,6 +9,10 @@ const MediumRoast = ({
   groupedCart,
 }) => {
   const mediumRoast = products.filter((a) => a.roast === "Mellanrost");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const getProductInCart = (id) => {
     const numberOfProductsInCart = groupedCart.find(

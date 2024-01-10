@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import classes from "./Products.module.css";
 import picture from "../../pictures/coffeeRecommendations.jpg";
@@ -11,6 +11,10 @@ const Products = ({
 }) => {
   const topCoffee = products.slice(1, 5);
   const recommendation = products.slice(9, 13);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const getProductInCart = (id) => {
     const numberOfProductsInCart = groupedCart.find(

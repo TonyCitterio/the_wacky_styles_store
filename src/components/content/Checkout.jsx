@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 import classes from "./Checkout.module.css";
 
 const Checkout = ({
   setView,
   setActiveView,
+  cart,
   groupedCart,
   calculateTotalPrice,
   addProductToCart,
@@ -15,6 +17,20 @@ const Checkout = ({
   setUserData,
 }) => {
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({
+    email: false,
+    firstName: false,
+    lastName: false,
+    phoneNumber: false,
+    street: false,
+    zip: false,
+    city: false,
+  });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  
   const handelSubmit = (event) => {
     event.preventDefault();
   };
@@ -44,7 +60,7 @@ const Checkout = ({
         case "email":
           if (!/^\S+@\S+\.\S+$/.test(value)) {
             errorMessage =
-              "Vänligen fyll i en giltig e-postadress (exempelvis johndoe@email.com";
+              "Vänligen fyll i en giltig e-postadress";
           }
           break;
         case "phoneNumber":
@@ -53,7 +69,7 @@ const Checkout = ({
             !(value.length === 9 || value.length === 10)
           ) {
             errorMessage =
-              "Vänligen fyll i ett giltigt telefonnummmer (exempelvis 0770123456)";
+              "Vänligen fyll i ett giltigt telefonnummmer";
           }
           break;
         case "street":
@@ -64,7 +80,7 @@ const Checkout = ({
         case "zip":
           if (!/^\d+$/.test(value) || value.length !== 5) {
             errorMessage =
-              "Vänligen ange ett 5-siffrigt postnummer (exempelvis 12345)";
+              "Vänligen ange ett giltigt postnummer";
           }
           break;
         default:
@@ -79,10 +95,12 @@ const Checkout = ({
     }
 
     setErrors(tempErrors);
+    setTouched((prevTouched) => ({ ...prevTouched, [fieldName]: true }));
   };
 
   const handleFocus = (fieldName) => {
     setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: "" }));
+    setTouched((prevTouched) => ({ ...prevTouched, [fieldName]: false }));
   };
 
   const isFormValid = () => {
@@ -94,163 +112,228 @@ const Checkout = ({
     return allFieldsFilled && noErrors;
   };
 
+  const getInputClassName = (fieldName) => {
+    if(touched[fieldName] && !errors[fieldName]) {
+      return `${classes.input} ${classes.inputValid}`;
+    }
+    return classes.input;
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
         <div className={classes.header}>
-          <h2>Din varukorg</h2>
-          <button onClick={() => {setView("products"); setActiveView("products")}}>Fortsätt handla</button>
+          <h2>Granska din order</h2>
+          <button
+            onClick={() => {
+              setView("products");
+              setActiveView("products");
+            }}
+          >
+            Fortsätt handla
+          </button>
         </div>
-        <div className={classes.products}>
-          {groupedCart.map((product) => (
-            <div key={product.id} className={classes.card}>
-              <img
-                src={product.picture}
-                alt=" of a coffee for a fake coffee shop"
-              />
-              <h3>{product.name}</h3>
-              <p>{product.roast}</p>
-              <p>{product.quantity}</p>
-              <p>{product.price}</p>
-              <p>{calculateTotalPrice(product)} kr</p>
-              <button onClick={() => addProductToCart(product)}>+</button>
-              <button onClick={() => removeProductFromCart(product)}>-</button>
+        {cart.length !== 0 ? (
+          <>
+            <div className={classes.shippingCostContainer}>
+              {!isSmallShippingAvailable && !isFreeShippingAvailable && (
+                <p>{smallShippingText}</p>
+              )}
+              {isSmallShippingAvailable && !isFreeShippingAvailable && (
+                <>
+                  <p
+                    style={{
+                      color: "#a663cc",
+                      fontWeight: "bold",
+                      marginRight: "0.35rem",
+                    }}
+                  >
+                    {smallShippingText}
+                  </p>
+                  <p>{freeShippingText}</p>
+                </>
+              )}
+              {isFreeShippingAvailable && (
+                <p style={{ color: "#a663cc", fontWeight: "bold" }}>
+                  {freeShippingText}
+                </p>
+              )}
             </div>
-          ))}
-          <div>
-            {!isSmallShippingAvailable && !isFreeShippingAvailable && (
-              <p>{smallShippingText}</p>
-            )}
-            {isSmallShippingAvailable && !isFreeShippingAvailable && (
-              <>
-                <p style={{ color: "green" }}>{smallShippingText}</p>
-                <p>{freeShippingText}</p>
-              </>
-            )}
-            {isFreeShippingAvailable && (
-              <p style={{ color: "green" }}>{freeShippingText}</p>
-            )}
-          </div>
-          <div className={classes.total}>
-            <p>Frakt: {shippingCost} kr</p>
-            <p>Att betala: {calculateTotalPriceWithShipping()} kr</p>
-          </div>
-        </div>
+            <div className={classes.products}>
+              {groupedCart.map((product) => (
+                <div key={product.id} className={classes.card}>
+                  <img
+                    src={product.picture}
+                    alt=" of a coffee for a fake coffee shop"
+                    height={75}
+                    width={64}
+                  />
+                  <div className={classes.productInfo}>
+                    <p>{product.name}</p>
+                    <p>Styckpris: {product.price}</p>
+                    <p>Summa: {calculateTotalPrice(product)} kr</p>
+                  </div>
+                  <div className={classes.buttonContainer}>
+                    <button
+                      onClick={() => removeProductFromCart(product)}
+                      aria-label="Remove product"
+                    >
+                      <FaMinus size={12} />
+                    </button>
+                    <div className={classes.quantity}>
+                      <p>{product.quantity}</p>
+                    </div>
+                    <button
+                      onClick={() => addProductToCart(product)}
+                      aria-label="Add product"
+                    >
+                      <FaPlus size={12} />
+                    </button>
+                  </div>
+                </div>
+              ))}
+              <div className={classes.totalPrice}>
+                <p>Frakt: {shippingCost} kr</p>
+                <p>
+                  <span>Att betala:</span> {calculateTotalPriceWithShipping()}{" "}
+                  kr
+                </p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <p className={classes.empty}>Din varukorg är tom</p>
+        )}
         <div>
           <p>
-            Det är ingen riktig beställning som görs utan det är bara en fake
-            beställning på en fake online kaffe shop
+            Ingen riktig beställning görs utan detta är bara en simulerad
+            beställning i en fiktiv onlinekaffebutik!
           </p>
         </div>
         <div className={classes.formContainer}>
+          <div className={classes.formHeading}>
+            <h3>Leveransuppgifter</h3>
+          </div>
           <form onSubmit={handelSubmit} className={classes.form}>
-            <label htmlFor="email">Epost <span className={classes.red}>*</span></label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="T.ex. johndoe@email.com"
-              value={userData.email}
-              onChange={handleInputChange}
-              onBlur={() => handleBlur("email")}
-              onFocus={() => handleFocus("email")}
-            />
-            {errors.email && <p>{errors.email}</p>}
+            <div className={classes.inputContainer}>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className={getInputClassName("email")}
+                placeholder="E-post *"
+                value={userData.email}
+                onChange={handleInputChange}
+                onBlur={() => handleBlur("email")}
+                onFocus={() => handleFocus("email")}
+                />
+                {errors.email && <p className={classes.errorMessage}>{errors.email}</p>}
+            </div>
             <div className={classes.nameField}>
               <div className={classes.firstNameField}>
-                <label htmlFor="firstName">Förnamn <span className={classes.red}>*</span></label>
+                {errors.firstName && (
+                  <p className={classes.errorMessage}>{errors.firstName}</p>
+                )}
                 <input
                   type="text"
                   name="firstName"
                   id="firstName"
-                  placeholder="T.ex. John"
+                  className={getInputClassName("firstName")}
+                  placeholder="Förnamn *"
                   value={userData.firstName}
                   onChange={handleInputChange}
                   onBlur={() => handleBlur("firstName")}
                   onFocus={() => handleFocus("firstName")}
                 />
-                {errors.firstName && <p>{errors.firstName}</p>}
               </div>
               <div className={classes.lastNameField}>
-                <label htmlFor="lastName">Efternamn <span className={classes.red}>*</span></label>
+                {errors.lastName && (
+                  <p className={classes.errorMessage}>{errors.lastName}</p>
+                )}
                 <input
                   type="text"
                   name="lastName"
                   id="lastName"
-                  placeholder="T.ex. Doe"
+                  className={getInputClassName("lastName")}
+                  placeholder="Efternamn *"
                   value={userData.lastName}
                   onChange={handleInputChange}
                   onBlur={() => handleBlur("lastName")}
                   onFocus={() => handleFocus("lastName")}
                 />
-                {errors.lastName && <p>{errors.lastName}</p>}
               </div>
             </div>
-            <label htmlFor="phoneNumber">Telefon <span className={classes.red}>*</span></label>
-            <input
-              type="tel"
-              name="phoneNumber"
-              id="phoneNumber"
-              placeholder="T.ex. +46 770-123 456"
-              value={userData.phoneNumber}
-              onChange={handleInputChange}
-              onBlur={() => handleBlur("phoneNumber")}
-              onFocus={() => handleFocus("phoneNumber")}
-            />
-            {errors.phoneNumber && <p>{errors.phoneNumber}</p>}
-            <label htmlFor="street">Adress <span className={classes.red}>*</span></label>
-            <input
-              type="text"
-              name="street"
-              id="street"
-              placeholder="T.ex. Gatunamn 1"
-              value={userData.street}
-              onChange={handleInputChange}
-              onBlur={() => handleBlur("street")}
-              onFocus={() => handleFocus("street")}
-            />
-            {errors.street && <p>{errors.street}</p>}
+            <div className={classes.inputContainer}>
+              {errors.phoneNumber && (
+                <p className={classes.errorMessage}>{errors.phoneNumber}</p>
+              )}
+              <input
+                type="tel"
+                name="phoneNumber"
+                id="phoneNumber"
+                className={getInputClassName("phoneNumber")}
+                placeholder="Telefon *"
+                value={userData.phoneNumber}
+                onChange={handleInputChange}
+                onBlur={() => handleBlur("phoneNumber")}
+                onFocus={() => handleFocus("phoneNumber")}
+              />
+            </div>
+            <div className={classes.inputContainer}>
+              {errors.street && <p className={classes.errorMessage}>{errors.street}</p>}
+              <input
+                type="text"
+                name="street"
+                id="street"
+                className={getInputClassName("street")}
+                placeholder="Adress *"
+                value={userData.street}
+                onChange={handleInputChange}
+                onBlur={() => handleBlur("street")}
+                onFocus={() => handleFocus("street")}
+              />
+            </div>
             <div className={classes.areaField}>
               <div className={classes.zipField}>
-                <label htmlFor="zip">Postnummer <span className={classes.red}>*</span></label>
+                {errors.zip && <p className={classes.errorMessage}>{errors.zip}</p>}
                 <input
                   type="text"
                   name="zip"
                   id="zip"
-                  placeholder="T.ex. 12345"
+                  className={getInputClassName("zip")}
+                  placeholder="Postnummer *"
                   value={userData.zip}
                   onChange={handleInputChange}
                   onBlur={() => handleBlur("zip")}
                   onFocus={() => handleFocus("zip")}
                 />
-                {errors.zip && <p>{errors.zip}</p>}
               </div>
               <div className={classes.cityField}>
-                <label htmlFor="city">Ort <span className={classes.red}>*</span></label>
+                {errors.city && <p className={classes.errorMessage}>{errors.city}</p>}
                 <input
                   type="text"
                   name="city"
                   id="city"
-                  placeholder="T.ex. Malmö"
+                  className={getInputClassName("city")}
+                  placeholder="Ort *"
                   value={userData.city}
                   onChange={handleInputChange}
                   onBlur={() => handleBlur("city")}
                   onFocus={() => handleFocus("city")}
                 />
-                {errors.city && <p>{errors.city}</p>}
               </div>
             </div>
           </form>
-        </div>
         <div className={classes.order}>
           <button
             onClick={() => setView("confirmation")}
             disabled={!isFormValid()}
             style={{ opacity: isFormValid() ? 1 : 0.5 }}
-          >
+            >
             Beställ
           </button>
         </div>
+            </div>
       </div>
     </div>
   );
