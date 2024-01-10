@@ -149,11 +149,11 @@ const MainPage = () => {
     const shippingInfo = {
       smallShippingText:
         leftToSmallShippingCost <= 0
-          ? "Frakt för 49 kr tillgänglig"
+          ? "Frakt för 49 kr tillgänglig!"
           : `Handla för ${leftToSmallShippingCost} kr till för att få frakt för 49 kr`,
       freeShippingText:
         leftToFreeShipping <= 0
-          ? "Fri frakt tillgänglig"
+          ? "Fri frakt tillgänglig!"
           : `Handla för ${leftToFreeShipping} kr till för att få gratis frakt`,
       isSmallShippingAvailable: leftToSmallShippingCost <= 0,
       isFreeShippingAvailable: leftToFreeShipping <= 0,
@@ -232,6 +232,7 @@ const MainPage = () => {
           <Checkout
             setView={setView}
             setActiveView={setActiveView}
+            cart={cart}
             groupedCart={groupedCart}
             calculateTotalPrice={calculateTotalPrice}
             removeProductFromCart={removeProductFromCart}

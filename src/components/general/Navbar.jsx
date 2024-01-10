@@ -28,8 +28,19 @@ const Navbar = ({
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [isAnimating, setIsAnimating] = useState(false);
   const inputRef = useRef(null);
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      setIsAnimating(true);
+      const timer = setTimeout(() => {
+        setIsAnimating(false);
+      }, 800); // match the duration of the CSS transition
+      return () => clearTimeout(timer);
+    }
+  }, [cart.length]);
 
   //handles the search
   useEffect(() => {
@@ -103,12 +114,6 @@ const Navbar = ({
     }
   };
 
-  const handleKeyDownCart = (event) => {
-    if (event.key === "Enter") {
-      setModalOpenCart(!modalOpenCart);
-    }
-  };
-
   const handleFocusOutOfDropdown = (event) => {
     if (!dropdownRef.current.contains(event.relatedTarget)) {
       setIsDropdownVisible(false);
@@ -172,14 +177,13 @@ const Navbar = ({
             </div>
             <div className={classes.navbarRightSide}>
               <div className={classes.shoppingCartContainer}>
-                <FaBasketShopping
-                  tabIndex={0}
-                  size={35}
-                  className={classes.cartIcon}
+                <button
                   onClick={() => setModalOpenCart(true)}
-                  onKeyDown={(event) => handleKeyDownCart(event)}
+                  className={classes.cartButton}
                   aria-label="Kundvagns ikon"
-                />
+                >
+                  <FaBasketShopping size={35} />
+                </button>
                 {modalOpenCart && (
                   <ModalCart
                     setView={setView}
@@ -192,10 +196,18 @@ const Navbar = ({
                     calculateTotalPrice={calculateTotalPrice}
                     shippingCost={shippingCost}
                     handleShippingCostText={handleShippingCostText}
-                    calculateTotalPriceWithShipping={calculateTotalPriceWithShipping}
+                    calculateTotalPriceWithShipping={
+                      calculateTotalPriceWithShipping
+                    }
                   />
                 )}
-                <div className={classes.itemsInCart}>
+                <div
+                  className={
+                    isAnimating
+                      ? `${classes.itemsInCart} ${classes.itemsInCartChange}`
+                      : classes.itemsInCart
+                  }
+                >
                   <p>{cart.length}</p>
                 </div>
               </div>

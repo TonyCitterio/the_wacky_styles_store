@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import classes from "./LightRoast.module.css";
 
@@ -9,6 +9,11 @@ const LightRoast = ({
   groupedCart,
 }) => {
   const lightRoast = products.filter((a) => a.roast === "Ljusrost");
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   const getProductInCart = (id) => {
     const numberOfProductsInCart = groupedCart.find(

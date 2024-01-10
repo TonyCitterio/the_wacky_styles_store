@@ -1,12 +1,14 @@
 .navbar {
   padding: 1rem;
-  position: relative;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #212529;
   color: #a663cc;
+  z-index: 100;
 }
 
 .navbarTop {
@@ -115,7 +117,10 @@
   display: flex;
 }
 
-.cartIcon {
+.cartButton {
+  background-color: transparent;
+  color: #a663cc;
+  border: none;
   cursor: pointer;
 }
 
@@ -133,6 +138,11 @@
   background-color: #83b692;
   font-size: 0.9rem;
   border-radius: 50%;
+}
+
+.itemsInCartChange {
+  outline: 5px solid #a663cc; 
+  transition: outline 0.8s ease; 
 }
 
 .itemsInCart p {

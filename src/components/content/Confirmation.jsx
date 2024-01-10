@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./Confirmation.module.css";
 
 const Confirmation = ({
@@ -14,6 +14,10 @@ const Confirmation = ({
 }) => {
   const CurrentDate = new Date().toLocaleDateString();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handleClose = () => {
     setCart([]);
     setUserData({
@@ -25,8 +29,8 @@ const Confirmation = ({
       zip: "",
       city: "",
     });
-    setView("products")
-    setActiveView("products")
+    setView("products");
+    setActiveView("products");
   };
 
   const formatStrings = (str) => {
@@ -45,15 +49,16 @@ const Confirmation = ({
       <div className={classes.content}>
         <div className={classes.intro}>
           <p>
-            Detta är ingen riktig orderbekräflelse så ingen order är lagd och
-            inga varor är beställda. Detta är bara en låtsas orderbekräftelse
-            från en låtsas online kaffe shop.
+            Det här utgör inte en faktisk orderbekräftelse; ingen beställning
+            har genomförts, och inga varor har beställts. Det är endast en
+            simulerad orderbekräftelse från en fiktiv onlinekaffebutik.
           </p>
         </div>
         <div className={classes.orderConfirmation}>
           <div className={classes.header}>
             <h2>Orderbekräftelse</h2>
-            <h3>The Wacky Coffee Shop</h3>
+            <h3 className={classes.headingBigScreen}>The Wacky Coffee Shop</h3>
+            <h3 className={classes.headingSmallScreen}>T.W.C.S</h3>
           </div>
           <div className={classes.customerInfo}>
             <div>
@@ -106,10 +111,10 @@ const Confirmation = ({
             </p>
           </div>
         </div>
-        <div className="">
+        <div className={classes.farewell}>
           <p>Tack för att du valt att handla hos The Wacky Coffee Shop</p>
           <p>Välkommen åter!</p>
-          <button onClick={handleClose}>Stäng</button>
+          <button className={classes.closeButton} onClick={handleClose}>Stäng</button>
         </div>
       </div>
     </div>

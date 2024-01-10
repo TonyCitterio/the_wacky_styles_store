@@ -1,18 +1,20 @@
 .container {
-  padding-block: 2rem;
+  min-height: 80vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
 .content {
-  width: clamp(35ch, 70%, 130ch);
+  width: clamp(35ch, 95%, 130ch);
   display: flex;
   flex-direction: column;
 }
 
 .intro {
-  margin-bottom: 1rem;
+  margin-bottom: 1.35rem;
+  line-height: 1.75rem;
 }
 
 .orderConfirmation {
@@ -32,9 +34,8 @@
 }
 
 .customerInfo {
-  padding: 0.5rem;
   margin: 2rem 0 4rem;
-  width: 60%;
+  width: clamp(20ch, 100%, 50ch);
   display: flex;
   flex-wrap: wrap;
   background-color: #dfdfdf;
@@ -76,7 +77,7 @@ td {
 }
 
 .totalPriceContainer {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -89,4 +90,31 @@ td {
 .totalPrice {
   font-weight: bold;
   color: #a663cc;
+}
+
+.closeButton {
+  padding: 0.6rem;
+  margin-top: 0.2rem;
+  background-color: #a663cc;
+  color: white;
+  font-family: inherit;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.farewell {
+  margin-top: 1.35rem;
+}
+
+@media (min-width: 551px) {
+  .headingSmallScreen {
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .headingBigScreen {
+    display: none;
+  }
 }
