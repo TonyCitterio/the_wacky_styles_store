@@ -37,7 +37,7 @@ const Navbar = ({
       setIsAnimating(true);
       const timer = setTimeout(() => {
         setIsAnimating(false);
-      }, 800); // match the duration of the CSS transition
+      }, 800);
       return () => clearTimeout(timer);
     }
   }, [cart.length]);
@@ -123,8 +123,15 @@ const Navbar = ({
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarTop}>
-        <h1 className={classes.bigHeading}>The Wacky Coffee Shop</h1>
-        <h1 className={classes.smallHeading}>T.W.C.S</h1>
+        <h1 className={classes.bigHeading} onClick={() => setView("products")}>
+          The Wacky Coffee Shop
+        </h1>
+        <h1
+          className={classes.smallHeading}
+          onClick={() => setView("products")}
+        >
+          T.W.C.S
+        </h1>
         <hr className={classes.hrSmallScreen} />
         {view !== "checkout" && view !== "confirmation" ? (
           <>
@@ -149,13 +156,13 @@ const Navbar = ({
                           <div className={classes.buttonContainer}>
                             <button
                               onClick={() => removeProductFromCart(result)}
-                              aria-label="Ta bort produkt"
+                              aria-label="Ta bort produkt från varukorg"
                             >
                               <FaMinus size={12} />
                             </button>
                             <button
                               onClick={() => addProductToCart(result)}
-                              aria-label="Lägg till produkt"
+                              aria-label="Lägg till produkt i varukorg"
                               onBlur={
                                 index === searchResults.length - 1
                                   ? handleFocusOutOfDropdown
@@ -208,7 +215,7 @@ const Navbar = ({
                       : classes.itemsInCart
                   }
                 >
-                  <p>{cart.length}</p>
+                  <p>{cart.length > 99 ? "99+" : cart.length}</p>
                 </div>
               </div>
               <div className={classes.totalPrice}>

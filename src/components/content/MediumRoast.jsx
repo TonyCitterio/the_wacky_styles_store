@@ -25,6 +25,7 @@ const MediumRoast = ({
   return (
     <div className={classes.container}>
       <div className={classes.content}>
+        <hr className={classes.hr} />
         <h2>Åk på smakresa med våra mellanrost kaffe</h2>
         <div className={classes.productsGrid}>
           {mediumRoast.map((product) => (
@@ -52,14 +53,34 @@ const MediumRoast = ({
               <div className={classes.cardBottom}>
                 <div className={classes.buttonContainer}>
                   {getProductInCart(product.id) === 0 ? (
-                    <button className={classes.onlyBuyButton} onClick={() => addProductToCart(product)}>Köp</button>
+                    <button
+                      className={classes.onlyBuyButton}
+                      onClick={() => addProductToCart(product)}
+                      aria-label="Köp"
+                    >
+                      Köp
+                    </button>
                   ) : (
                     <>
-                      <button className={classes.addAndRemoveButtons} onClick={() => removeProductFromCart(product)}><FaMinus size={12} /></button>
+                      <button
+                        className={classes.addAndRemoveButtons}
+                        onClick={() => removeProductFromCart(product)}
+                      >
+                        <FaMinus
+                          size={12}
+                          aria-label="Ta bort produkt från varukorg"
+                        />
+                      </button>
                       <div className={classes.quantity}>
                         <p>{getProductInCart(product.id)}</p>
                       </div>
-                      <button className={classes.addAndRemoveButtons} onClick={() => addProductToCart(product)}><FaPlus size={12} /></button>
+                      <button
+                        className={classes.addAndRemoveButtons}
+                        onClick={() => addProductToCart(product)}
+                        aria-label="Lägg till produkt i varukorg"
+                      >
+                        <FaPlus size={12} />
+                      </button>
                     </>
                   )}
                 </div>
