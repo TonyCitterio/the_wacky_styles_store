@@ -66,8 +66,17 @@ const ModalCart = ({
   } = handleShippingCostText();
 
   return (
-    <div className={`${classes.backdrop} ${isClosing ? classes.fadeOutBackdrop : classes.fadeInBackdrop}`}>
-      <div className={`${classes.cart} ${isClosing ? classes.fadeOutCart : classes.fadeInCart}`} ref={cartRef}>
+    <div
+      className={`${classes.backdrop} ${
+        isClosing ? classes.fadeOutBackdrop : classes.fadeInBackdrop
+      }`}
+    >
+      <div
+        className={`${classes.cart} ${
+          isClosing ? classes.fadeOutCart : classes.fadeInCart
+        }`}
+        ref={cartRef}
+      >
         <div className={classes.header}>
           <div>
             <h3>Varukorg</h3>
@@ -90,12 +99,16 @@ const ModalCart = ({
             )}
             {isSmallShippingAvailable && !isFreeShippingAvailable && (
               <>
-                <p style={{ color: "#a663cc", fontWeight: "bold" }}>{smallShippingText}</p>
+                <p style={{ color: "#a663cc", fontWeight: "bold" }}>
+                  {smallShippingText}
+                </p>
                 <p>{freeShippingText}</p>
               </>
             )}
             {isSmallShippingAvailable && isFreeShippingAvailable && (
-              <p style={{ color: "#a663cc", fontWeight: "bold" }}>{freeShippingText}</p>
+              <p style={{ color: "#a663cc", fontWeight: "bold" }}>
+                {freeShippingText}
+              </p>
             )}
           </div>
         ) : null}
@@ -116,7 +129,7 @@ const ModalCart = ({
               <div className={classes.buttonContainer}>
                 <button
                   onClick={() => removeProductFromCart(product)}
-                  aria-label="Remove product"
+                  aria-label="Ta bort produkt från varukorg"
                 >
                   <FaMinus size={12} />
                 </button>
@@ -125,7 +138,7 @@ const ModalCart = ({
                 </div>
                 <button
                   onClick={() => addProductToCart(product)}
-                  aria-label="Add product"
+                  aria-label="Lägg till produkt i varukorg"
                 >
                   <FaPlus size={12} />
                 </button>
@@ -136,8 +149,11 @@ const ModalCart = ({
         {!cartIsEmpty ? (
           <>
             <div className={classes.emptyCartContainer}>
-              <button onClick={() => setCart([])}>
-                Tom varukorg <FaTrash />
+              <button
+                onClick={() => setCart([])}
+                aria-label="Ta bort alla produkter från varukorg"
+              >
+                Töm varukorg <FaTrash />
               </button>
             </div>
             <div className={classes.totalPriceContainer}>
@@ -146,7 +162,10 @@ const ModalCart = ({
                 <span className={classes.totalPrice}>Att betala:</span>{" "}
                 {calculateTotalPriceWithShipping()} kr
               </p>
-              <button onClick={() => handleViewChange("checkout")}>
+              <button
+                onClick={() => handleViewChange("checkout")}
+                aria-label="Gå till kassan"
+              >
                 Till kassan
               </button>
             </div>
@@ -158,131 +177,3 @@ const ModalCart = ({
 };
 
 export default ModalCart;
-
-// If I might use a portal instead. If I do dont forget to add this <div id="modal-root"></div> in index.
-/* import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import classes from "./ModalCart.module.css";
-import ModalCheckout from "./ModalCheckout";
-
-const ModalCartOverlay = ({
-  setModalOpenCart,
-  setCart,
-  removeProductFromCart,
-  addProductToCart,
-  groupedCart,
-  cartIsEmpty,
-  emptyCart,
-  calculateTotalPrice,
-  modalCheckoutOpen,
-  setModalCheckoutOpen,
- 
-}) => {
-  const handelModal = () => {
-    setModalCheckoutOpen(true);
-
-  }
-  return (
-    <div className={classes.backdrop}>
-      <div className={classes.cart}>
-        <div className={classes.header}>
-          <h3>Varukorg</h3>
-          <button onClick={() => setModalOpenCart(false)}>Close</button>
-        </div>
-        {cartIsEmpty ? <p>Din varukorg är tom</p> : null}
-        <div className={classes.products}>
-          {groupedCart.map((product) => (
-            <div className={classes.card} key={product.id}>
-              <img
-                src={product.picture}
-                alt={` off coffee for a fake coffee shop`}
-                height={90}
-                width={65}
-              />
-              <p>{product.name}</p>
-              <p>{product.quantity}</p>
-              <p>Price per st: {product.price} kr</p>
-              <p>Summa {calculateTotalPrice(product)} kr</p>
-              <div>
-                <button onClick={() => addProductToCart(product)}>+</button>
-                <button onClick={() => removeProductFromCart(product)}>
-                  -
-                </button>
-              </div>
-            </div>
-          ))}
-          {emptyCart ? (
-            <div>
-              <button onClick={() => setCart([])}>Tom varukorg</button>
-              <button onClick={handelModal}>
-                Checkout
-              </button>
-              {modalCheckoutOpen && (
-                <ModalCheckout setModalCheckoutOpen={setModalCheckoutOpen} setModalOpenCart={setModalOpenCart} />
-              )}
-            </div>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ModalCart = ({
-  setModalOpenCart,
-  cart,
-  setCart,
-  removeProductFromCart,
-  addProductToCart,
-}) => {
-  const [modalCheckoutOpen, setModalCheckoutOpen] = useState(false);
-  const groupProductsByProductId = (cartProducts) => {
-    const groupedProducts = {};
-
-    cartProducts.forEach((product) => {
-      if (groupedProducts[product.id]) {
-        groupedProducts[product.id].quantity += 1;
-      } else {
-        groupedProducts[product.id] = { ...product, quantity: 1 };
-      }
-    });
-
-    return Object.values(groupedProducts);
-  };
-
-  const groupedCart = groupProductsByProductId(cart);
-  const cartIsEmpty = cart.length === 0;
-  const emptyCart = cart.length >= 1;
-
-  const calculateTotalPrice = (product) => {
-    const price = parseFloat(product.price.replace(/[^\d.-]/g, ""));
-    const totalPrice = product.quantity * price;
-
-    return totalPrice;
-  };
-
-
-
-  return (
-    <>
-      {ReactDOM.createPortal(
-        <ModalCartOverlay
-          setModalOpenCart={setModalOpenCart}
-          setCart={setCart}
-          removeProductFromCart={removeProductFromCart}
-          addProductToCart={addProductToCart}
-          groupedCart={groupedCart}
-          cartIsEmpty={cartIsEmpty}
-          emptyCart={emptyCart}
-          calculateTotalPrice={calculateTotalPrice}
-          modalCheckoutOpen={modalCheckoutOpen}
-          setModalCheckoutOpen={setModalCheckoutOpen}
-       
-        />,
-        document.getElementById("modalCart-root")
-      )}
-    </>
-  );
-};
-
-export default ModalCart; */

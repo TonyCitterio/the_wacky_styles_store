@@ -1,9 +1,8 @@
 .container {
   min-height: 80vh;
-  min-height: 80vh; 
+  min-height: 80vh;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
 }
 
 .content {
@@ -14,7 +13,7 @@
 }
 
 .header {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,13 +27,27 @@
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.header button:hover {
+  background-color: #834ca3;
+}
+
+.shippingCostContainer {
+  display: flex;
+  margin-bottom: 0.75rem;
+}
+
+.shippingCostContainer p {
+  margin: 0;
 }
 
 .products {
   padding-inline: 0.5rem;
-  margin-bottom: 3rem;
-  border-radius: 0.5rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin-bottom: 2.2rem;
+  border-radius: 0.75rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .products > *:nth-child(1) {
@@ -49,9 +62,9 @@
   display: flex;
   align-items: center;
   background-color: white;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-  rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .card img {
@@ -94,6 +107,11 @@
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.buttonContainer button:hover {
+  background-color: #834ca3;
 }
 
 .quantity {
@@ -108,25 +126,16 @@
   border-radius: 0.3rem;
 }
 
-.shippingCostContainer {
-  display: flex;
-  margin-bottom: 0.5rem;
-}
-
-.shippingCostContainer p {
-  margin: 0;
-}
-
 .totalPrice {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  /* border: 1px solid limegreen; */
 }
 
 .totalPrice p {
   margin: 0;
 }
+
 .totalPrice > *:nth-child(2) {
   margin: 0.25rem 0 1rem;
 }
@@ -140,16 +149,26 @@
   margin: 2rem 0 10rem;
 }
 
+.fakeTextExplanation {
+  margin: 1.5rem 0 0.7rem;
+  line-height: 1.35rem;
+}
+
+.fakeTextExplanation p {
+  margin: 0;
+  max-width: 75ch;
+  text-wrap: pretty;
+}
+
 .formContainer {
-  padding-block: 1rem; 
+  padding-block: 1rem;
   margin-top: 0.3rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 0.75rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .form {
@@ -230,16 +249,14 @@
 }
 
 .inputValid {
-  border: 2px solid #2a9d8f;
+  border: 3px solid #2a9d8f;
 }
 
 .order {
   margin-bottom: 0.5rem;
-  /* padding-top: 1rem; */
   width: clamp(30ch, 90%, 100ch);
   display: flex;
   justify-content: flex-end;
-
 }
 
 .order button {
@@ -251,17 +268,81 @@
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.order button:not(:disabled):hover {
+  background-color: #834ca3;
+}
+
+@media (max-width: 880px) {
+  .products {
+    margin-bottom: 1.2rem;
+  }
+  .formContainer {
+    margin-bottom: 3rem;
+  }
 }
 
 @media (max-width: 615px) {
   .shippingCostContainer {
     display: none;
   }
-  .areaField, .nameField {
+  .products {
+    margin-top: 0.5rem;
+  }
+  .areaField,
+  .nameField {
     gap: 0rem;
   }
   .firstNameField,
-  .lastNameField, .zipField {
+  .lastNameField,
+  .zipField {
     min-width: 30ch;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .container {
+    font-size: 0.8rem;
+  }
+  .header button {
+    padding: 0.35rem;
+  }
+  .buttonContainer {
+    right: 6px;
+  }
+  .buttonContainer button {
+    width: 18px;
+  }
+  .quantity {
+    width: 38px;
+  }
+}
+
+@media (hover: none), (hover: on-demand) {
+  .header button {
+    transition: none;
+  }
+  .header button:hover {
+    background-color: #a663cc;
+  }
+  .buttonContainer button {
+    transition: none;
+  }
+  .buttonContainer button:hover {
+    background-color: #a663cc;
+  }
+  .order button {
+    transition: none;
+  }
+  .order button:not(:disabled):hover {
+    background-color: #a663cc;
   }
 }

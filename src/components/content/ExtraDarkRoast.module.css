@@ -1,5 +1,5 @@
 .container {
-  margin-bottom: 5rem;
+  margin-bottom: 7.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +8,17 @@
 
 .content {
   width: clamp(20ch, 80%, 130ch);
+}
+
+.hr {
+  height: 2px;
+  border: none;
+  background-color: #834ca3;
+  box-shadow: 0 3px 0 #834ca360;
+}
+
+.content h2 {
+  margin: 2.5rem 0 1.5rem;
 }
 
 .productsGrid {
@@ -25,6 +36,12 @@
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.card:hover {
+  .roastContainer {
+    background-color: #834ca3;
+  }
 }
 
 .cardTop {
@@ -67,6 +84,7 @@
     black 90%,
     transparent
   );
+  transition: background-color 0.2s ease-in-out;
 }
 
 .roastContainer p {
@@ -129,6 +147,11 @@
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.onlyBuyButton:hover {
+  background-color: #834ca3;
 }
 
 .addAndRemoveButtons {
@@ -141,6 +164,11 @@
   border-radius: 0.3rem;
   border: none;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.addAndRemoveButtons:hover {
+  background-color: #834ca3;
 }
 
 .quantity {
@@ -155,9 +183,35 @@
   border-radius: 0.3rem;
 }
 
+@media (max-width: 880px) {
+  .container {
+    margin-bottom: 5rem;
+  }
+  .content {
+    text-align: center;
+  }
+}
+
 @media (max-width: 289px) {
   .container {
     padding-left: 1rem;
-    justify-content:unset;
+    justify-content: unset;
+  }
+}
+
+@media (hover: none), (hover: on-demand) {
+  .card:hover {
+    .roastContainer {
+      background-color: #a663cc;
+    }
+  }
+  .roastContainer,
+  .onlyBuyButton,
+  .addAndRemoveButtons {
+    transition: none;
+  }
+  .onlyBuyButton:hover,
+  .addAndRemoveButtons:hover {
+    background-color: #a663cc;
   }
 }

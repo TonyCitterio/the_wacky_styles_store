@@ -1,10 +1,37 @@
 .footer {
-  padding: 1rem;
+  padding-block: 2rem;
   color: #fff;
-  background-color: #212529;
+  background-color: #e6e1da;
   color: #a663cc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer .shippingCostText {
+  font-style: normal;
+  margin-bottom: 0;
+  font-style: normal;
+}
+
+.truckIcon {
+  margin-right: 0.3rem;
 }
 
 .footer h3 {
+  margin: 0.75rem 0 1rem;
   font-family: "Rowdies", sans-serif;
+  font-size: 1.35rem;
+}
+
+.footer p {
+  margin-top: 0;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+@media (max-width: 300px) {
+  .footer p {
+    font-size: 0.8rem;
+  }
 }

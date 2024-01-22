@@ -10,6 +10,7 @@
   width: clamp(35ch, 95%, 130ch);
   display: flex;
   flex-direction: column;
+  color: #333;
 }
 
 .intro {
@@ -38,7 +39,7 @@
   width: clamp(20ch, 100%, 50ch);
   display: flex;
   flex-wrap: wrap;
-  background-color: #dfdfdf;
+  background-color: #e6e1da;
   border-radius: 0.5rem;
 }
 
@@ -101,10 +102,26 @@ td {
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.closeButton:hover {
+  background-color: #834ca3;
 }
 
 .farewell {
   margin-top: 1.35rem;
+}
+
+.farewell p {
+  max-width: 75ch;
+  text-wrap: pretty;
+}
+
+@media (max-width: 880px) {
+  .intro p {
+    margin-block: 0.5rem;
+  }
 }
 
 @media (min-width: 551px) {
@@ -116,5 +133,26 @@ td {
 @media (max-width: 550px) {
   .headingBigScreen {
     display: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    font-size: 0.855rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .productTable {
+    font-size: 0.55rem;
+  }
+}
+
+@media (hover: none), (hover: on-demand) {
+  .closeButton {
+    transition: none;
+  }
+  .closeButton:hover {
+    background-color: #a663cc;
   }
 }

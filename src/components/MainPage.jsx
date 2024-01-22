@@ -18,7 +18,7 @@ const MainPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [view, setView] = useState("products");
-  const [activeView, setActiveView] = useState("products")
+  const [activeView, setActiveView] = useState("products");
   const [cart, setCart] = useState([]);
   const shippingBig = 99;
   const shippingSmall = 49;

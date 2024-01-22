@@ -1,5 +1,5 @@
 .container {
-  margin-bottom: 5rem;
+  margin-bottom: 7.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,26 @@
   width: clamp(20ch, 80%, 130ch);
 }
 
-.productsGrid {
+.hr {
+  height: 2px;
+  border: none;
+  background: #834ca3;
+  box-shadow: 0 3px 0 #834ca360;
+}
+
+.bestSellerHeading {
+  margin: 2.5rem 0 1.5rem;
+}
+
+.productsGridBestSeller {
+  margin-bottom: 8.5rem;
+  width: 100%;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.productsGridRecommendations {
   width: 100%;
   display: grid;
   gap: 1.5rem;
@@ -25,6 +44,12 @@
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.card:hover {
+  .roastContainer {
+    background-color: #834ca3;
+  }
 }
 
 .cardTop {
@@ -67,6 +92,7 @@
     black 90%,
     transparent
   );
+  transition: background-color 0.2s ease-in-out;
 }
 
 .roastContainer p {
@@ -129,6 +155,11 @@
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.onlyBuyButton:hover {
+  background-color: #834ca3;
 }
 
 .addAndRemoveButtons {
@@ -141,6 +172,11 @@
   border-radius: 0.3rem;
   border: none;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.addAndRemoveButtons:hover {
+  background-color: #834ca3;
 }
 
 .quantity {
@@ -156,33 +192,81 @@
 }
 
 .recommendations {
-  margin-top: 7rem;
-  margin-bottom: 4.5rem;
+  margin-top: 1.75rem;
+  margin-bottom: 3.75rem;
   display: flex;
   flex-wrap: wrap;
 }
 
 .recommendations > *:nth-child(1) {
-  flex: 1 1 30%;
-  /* background-color: #52796f;
-  background-color: #354f52;
-  background-color: #ece2d0; */
+  padding-right: 1rem;
+  flex: 1 1 45%;
+  min-width: 30ch;
+  line-height: 1.35rem;
 }
 
 .recommendations > *:nth-child(2) {
-  flex: 1 1 70%;
-  height: 270px;
+  height: 450px;
+  flex: 1 1 55%;
+  min-width: 41ch;
 }
 
 .recommendations > *:nth-child(2) img {
   width: 100%;
   height: 100%;
+  border-radius: 0.5rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.recommendations p {
+  max-width: 75ch;
+  text-wrap: pretty;
+}
+
+@media (max-width: 880px) {
+  .container,
+  .productsGridBestSeller {
+    margin-bottom: 5rem;
+  }
+}
+
+@media (max-width: 840px) {
+  .content {
+    text-align: center;
+  }
+  .recommendations > *:nth-child(1) {
+    padding-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 470px) {
+  .recommendations > *:nth-child(2) {
+    min-width: 30ch;
+  }
 }
 
 @media (max-width: 289px) {
   .container {
     padding-left: 1rem;
-    justify-content:unset;
+    justify-content: unset;
+    font-size: 0.9rem;
+  }
+}
+
+@media (hover: none), (hover: on-demand) {
+  .card:hover {
+    .roastContainer {
+      background-color: #a663cc;
+    }
+  }
+  .roastContainer,
+  .onlyBuyButton,
+  .addAndRemoveButtons {
+    transition: none;
+  }
+  .onlyBuyButton:hover,
+  .addAndRemoveButtons:hover {
+    background-color: #a663cc;
   }
 }

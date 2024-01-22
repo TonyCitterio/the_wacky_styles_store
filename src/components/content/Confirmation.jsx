@@ -114,7 +114,13 @@ const Confirmation = ({
         <div className={classes.farewell}>
           <p>Tack för att du valt att handla hos The Wacky Coffee Shop</p>
           <p>Välkommen åter!</p>
-          <button className={classes.closeButton} onClick={handleClose}>Stäng</button>
+          <button
+            className={classes.closeButton}
+            onClick={handleClose}
+            aria-label="Stäng orderbekräftelsen och gå tillbaka till huvudsidan"
+          >
+            Stäng
+          </button>
         </div>
       </div>
     </div>

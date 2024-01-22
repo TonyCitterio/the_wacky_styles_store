@@ -30,7 +30,7 @@ const Checkout = ({
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   const handelSubmit = (event) => {
     event.preventDefault();
   };
@@ -59,8 +59,7 @@ const Checkout = ({
       switch (fieldName) {
         case "email":
           if (!/^\S+@\S+\.\S+$/.test(value)) {
-            errorMessage =
-              "Vänligen fyll i en giltig e-postadress";
+            errorMessage = "Vänligen fyll i en giltig e-postadress";
           }
           break;
         case "phoneNumber":
@@ -68,8 +67,7 @@ const Checkout = ({
             !/^\d+$/.test(value) ||
             !(value.length === 9 || value.length === 10)
           ) {
-            errorMessage =
-              "Vänligen fyll i ett giltigt telefonnummmer";
+            errorMessage = "Vänligen fyll i ett giltigt telefonnummmer";
           }
           break;
         case "street":
@@ -79,8 +77,7 @@ const Checkout = ({
           break;
         case "zip":
           if (!/^\d+$/.test(value) || value.length !== 5) {
-            errorMessage =
-              "Vänligen ange ett giltigt postnummer";
+            errorMessage = "Vänligen ange ett giltigt postnummer";
           }
           break;
         default:
@@ -113,7 +110,7 @@ const Checkout = ({
   };
 
   const getInputClassName = (fieldName) => {
-    if(touched[fieldName] && !errors[fieldName]) {
+    if (touched[fieldName] && !errors[fieldName]) {
       return `${classes.input} ${classes.inputValid}`;
     }
     return classes.input;
@@ -129,6 +126,7 @@ const Checkout = ({
               setView("products");
               setActiveView("products");
             }}
+            aria-label="Gå tillbaka till produkter och fortsätt handla"
           >
             Fortsätt handla
           </button>
@@ -176,7 +174,7 @@ const Checkout = ({
                   <div className={classes.buttonContainer}>
                     <button
                       onClick={() => removeProductFromCart(product)}
-                      aria-label="Remove product"
+                      aria-label="Ta bort produkt från varukorg"
                     >
                       <FaMinus size={12} />
                     </button>
@@ -185,7 +183,7 @@ const Checkout = ({
                     </div>
                     <button
                       onClick={() => addProductToCart(product)}
-                      aria-label="Add product"
+                      aria-label="Lägg till produkt i varukorg"
                     >
                       <FaPlus size={12} />
                     </button>
@@ -204,136 +202,149 @@ const Checkout = ({
         ) : (
           <p className={classes.empty}>Din varukorg är tom</p>
         )}
-        <div>
-          <p>
-            Ingen riktig beställning görs utan detta är bara en simulerad
-            beställning i en fiktiv onlinekaffebutik!
-          </p>
-        </div>
-        <div className={classes.formContainer}>
-          <div className={classes.formHeading}>
-            <h3>Leveransuppgifter</h3>
-          </div>
-          <form onSubmit={handelSubmit} className={classes.form}>
-            <div className={classes.inputContainer}>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className={getInputClassName("email")}
-                placeholder="E-post *"
-                value={userData.email}
-                onChange={handleInputChange}
-                onBlur={() => handleBlur("email")}
-                onFocus={() => handleFocus("email")}
-                />
-                {errors.email && <p className={classes.errorMessage}>{errors.email}</p>}
+        {cart.length !== 0 ? (
+          <>
+            <div className={classes.fakeTextExplanation}>
+              <p>
+                Ingen riktig beställning görs utan detta är bara en simulerad
+                beställning i en fiktiv onlinekaffebutik!
+              </p>
             </div>
-            <div className={classes.nameField}>
-              <div className={classes.firstNameField}>
-                {errors.firstName && (
-                  <p className={classes.errorMessage}>{errors.firstName}</p>
-                )}
-                <input
-                  type="text"
-                  name="firstName"
-                  id="firstName"
-                  className={getInputClassName("firstName")}
-                  placeholder="Förnamn *"
-                  value={userData.firstName}
-                  onChange={handleInputChange}
-                  onBlur={() => handleBlur("firstName")}
-                  onFocus={() => handleFocus("firstName")}
-                />
+            <div className={classes.formContainer}>
+              <div className={classes.formHeading}>
+                <h3>Leveransuppgifter</h3>
               </div>
-              <div className={classes.lastNameField}>
-                {errors.lastName && (
-                  <p className={classes.errorMessage}>{errors.lastName}</p>
-                )}
-                <input
-                  type="text"
-                  name="lastName"
-                  id="lastName"
-                  className={getInputClassName("lastName")}
-                  placeholder="Efternamn *"
-                  value={userData.lastName}
-                  onChange={handleInputChange}
-                  onBlur={() => handleBlur("lastName")}
-                  onFocus={() => handleFocus("lastName")}
-                />
+              <form onSubmit={handelSubmit} className={classes.form}>
+                <div className={classes.inputContainer}>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className={getInputClassName("email")}
+                    placeholder="E-post *"
+                    value={userData.email}
+                    onChange={handleInputChange}
+                    onBlur={() => handleBlur("email")}
+                    onFocus={() => handleFocus("email")}
+                  />
+                  {errors.email && (
+                    <p className={classes.errorMessage}>{errors.email}</p>
+                  )}
+                </div>
+                <div className={classes.nameField}>
+                  <div className={classes.firstNameField}>
+                    {errors.firstName && (
+                      <p className={classes.errorMessage}>{errors.firstName}</p>
+                    )}
+                    <input
+                      type="text"
+                      name="firstName"
+                      id="firstName"
+                      className={getInputClassName("firstName")}
+                      placeholder="Förnamn *"
+                      value={userData.firstName}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("firstName")}
+                      onFocus={() => handleFocus("firstName")}
+                    />
+                  </div>
+                  <div className={classes.lastNameField}>
+                    {errors.lastName && (
+                      <p className={classes.errorMessage}>{errors.lastName}</p>
+                    )}
+                    <input
+                      type="text"
+                      name="lastName"
+                      id="lastName"
+                      className={getInputClassName("lastName")}
+                      placeholder="Efternamn *"
+                      value={userData.lastName}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("lastName")}
+                      onFocus={() => handleFocus("lastName")}
+                    />
+                  </div>
+                </div>
+                <div className={classes.inputContainer}>
+                  {errors.phoneNumber && (
+                    <p className={classes.errorMessage}>{errors.phoneNumber}</p>
+                  )}
+                  <input
+                    type="tel"
+                    name="phoneNumber"
+                    id="phoneNumber"
+                    className={getInputClassName("phoneNumber")}
+                    placeholder="Telefon *"
+                    value={userData.phoneNumber}
+                    onChange={handleInputChange}
+                    onBlur={() => handleBlur("phoneNumber")}
+                    onFocus={() => handleFocus("phoneNumber")}
+                  />
+                </div>
+                <div className={classes.inputContainer}>
+                  {errors.street && (
+                    <p className={classes.errorMessage}>{errors.street}</p>
+                  )}
+                  <input
+                    type="text"
+                    name="street"
+                    id="street"
+                    className={getInputClassName("street")}
+                    placeholder="Adress *"
+                    value={userData.street}
+                    onChange={handleInputChange}
+                    onBlur={() => handleBlur("street")}
+                    onFocus={() => handleFocus("street")}
+                  />
+                </div>
+                <div className={classes.areaField}>
+                  <div className={classes.zipField}>
+                    {errors.zip && (
+                      <p className={classes.errorMessage}>{errors.zip}</p>
+                    )}
+                    <input
+                      type="text"
+                      name="zip"
+                      id="zip"
+                      className={getInputClassName("zip")}
+                      placeholder="Postnummer *"
+                      value={userData.zip}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("zip")}
+                      onFocus={() => handleFocus("zip")}
+                    />
+                  </div>
+                  <div className={classes.cityField}>
+                    {errors.city && (
+                      <p className={classes.errorMessage}>{errors.city}</p>
+                    )}
+                    <input
+                      type="text"
+                      name="city"
+                      id="city"
+                      className={getInputClassName("city")}
+                      placeholder="Ort *"
+                      value={userData.city}
+                      onChange={handleInputChange}
+                      onBlur={() => handleBlur("city")}
+                      onFocus={() => handleFocus("city")}
+                    />
+                  </div>
+                </div>
+              </form>
+              <div className={classes.order}>
+                <button
+                  onClick={() => setView("confirmation")}
+                  disabled={!isFormValid()}
+                  style={{ opacity: isFormValid() ? 1 : 0.5 }}
+                  aria-label="Skicka beställning"
+                >
+                  Beställ
+                </button>
               </div>
             </div>
-            <div className={classes.inputContainer}>
-              {errors.phoneNumber && (
-                <p className={classes.errorMessage}>{errors.phoneNumber}</p>
-              )}
-              <input
-                type="tel"
-                name="phoneNumber"
-                id="phoneNumber"
-                className={getInputClassName("phoneNumber")}
-                placeholder="Telefon *"
-                value={userData.phoneNumber}
-                onChange={handleInputChange}
-                onBlur={() => handleBlur("phoneNumber")}
-                onFocus={() => handleFocus("phoneNumber")}
-              />
-            </div>
-            <div className={classes.inputContainer}>
-              {errors.street && <p className={classes.errorMessage}>{errors.street}</p>}
-              <input
-                type="text"
-                name="street"
-                id="street"
-                className={getInputClassName("street")}
-                placeholder="Adress *"
-                value={userData.street}
-                onChange={handleInputChange}
-                onBlur={() => handleBlur("street")}
-                onFocus={() => handleFocus("street")}
-              />
-            </div>
-            <div className={classes.areaField}>
-              <div className={classes.zipField}>
-                {errors.zip && <p className={classes.errorMessage}>{errors.zip}</p>}
-                <input
-                  type="text"
-                  name="zip"
-                  id="zip"
-                  className={getInputClassName("zip")}
-                  placeholder="Postnummer *"
-                  value={userData.zip}
-                  onChange={handleInputChange}
-                  onBlur={() => handleBlur("zip")}
-                  onFocus={() => handleFocus("zip")}
-                />
-              </div>
-              <div className={classes.cityField}>
-                {errors.city && <p className={classes.errorMessage}>{errors.city}</p>}
-                <input
-                  type="text"
-                  name="city"
-                  id="city"
-                  className={getInputClassName("city")}
-                  placeholder="Ort *"
-                  value={userData.city}
-                  onChange={handleInputChange}
-                  onBlur={() => handleBlur("city")}
-                  onFocus={() => handleFocus("city")}
-                />
-              </div>
-            </div>
-          </form>
-        <div className={classes.order}>
-          <button
-            onClick={() => setView("confirmation")}
-            disabled={!isFormValid()}
-            style={{ opacity: isFormValid() ? 1 : 0.5 }}
-            >
-            Beställ
-          </button>
-        </div>
-            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );

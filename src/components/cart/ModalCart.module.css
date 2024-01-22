@@ -15,7 +15,7 @@
   width: clamp(39ch, 65%, 80ch);
   max-height: 100vh;
   max-height: 100svh;
-  background-color: #f9f6f1;
+  background-color: #f6f6f6;
   color: #333;
   overflow-y: auto;
 }
@@ -32,7 +32,7 @@
 }
 
 .header h3 {
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   color: #a663cc;
 }
 
@@ -112,6 +112,11 @@
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.buttonContainer button:hover {
+  background-color: #834ca3;
 }
 
 .quantity {
@@ -173,6 +178,11 @@
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.totalPriceContainer button:hover {
+  background-color: #834ca3;
 }
 
 @keyframes fadeInBackdrop {
@@ -233,4 +243,31 @@
 
 .fadeOutCart {
   animation: fadeOutCart 1s ease-in-out forwards;
+}
+
+@media (max-width: 300px) {
+  .cart {
+    font-size: 0.9rem;
+  }
+  .buttonContainer button {
+    width: 19px;
+  }
+  .quantity {
+    width: 48px;
+  }
+}
+
+@media (hover: none), (hover: on-demand) {
+  .buttonContainer button {
+    transition: none;
+  }
+  .buttonContainer button:hover {
+    background-color: #a663cc;
+  }
+  .totalPriceContainer button {
+    transition: none;
+  }
+  .totalPriceContainer button:hover {
+    background-color: #a663cc;
+  }
 }

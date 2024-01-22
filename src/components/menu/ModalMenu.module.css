@@ -29,32 +29,31 @@
 }
 
 @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(-100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
   }
-  
-  @keyframes slideOut {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(-100%);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .slideIn {
-    animation: slideIn 1s ease-in-out forwards;
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .slideOut {
-    animation: slideOut 1s ease-in-out forwards;
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
   }
-  
+}
+
+.slideIn {
+  animation: slideIn 1s ease-in-out forwards;
+}
+
+.slideOut {
+  animation: slideOut 1s ease-in-out forwards;
+}
