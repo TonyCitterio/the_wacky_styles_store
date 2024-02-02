@@ -98,7 +98,7 @@
 }
 
 .buttonContainer button {
-  width: 23px;
+  width: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -182,11 +182,13 @@
 }
 
 .input {
+  padding: 0.3rem;
   margin-block: 0.75rem;
   height: 35px;
   width: 100%;
   background-color: white;
   font-family: inherit;
+  font-size: 16px;
   border: 1px solid #333;
   border-radius: 0.3rem;
 }

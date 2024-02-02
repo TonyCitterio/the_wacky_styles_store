@@ -140,7 +140,7 @@
 }
 
 .onlyBuyButton {
-  width: 132px;
+  width: 138px;
   color: white;
   background-color: #a663cc;
   font-size: 1.1rem;
@@ -155,7 +155,7 @@
 }
 
 .addAndRemoveButtons {
-  width: 26px;
+  width: 29px;
   display: flex;
   justify-content: center;
   align-items: center;

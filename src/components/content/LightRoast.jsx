@@ -66,7 +66,7 @@ const LightRoast = ({
                         onClick={() => removeProductFromCart(product)}
                         aria-label="Ta bort produkt från varukorg"
                       >
-                        <FaMinus size={12} />
+                        <FaMinus />
                       </button>
                       <div className={classes.quantity}>
                         <p>{getProductInCart(product.id)}</p>
@@ -76,7 +76,7 @@ const LightRoast = ({
                         onClick={() => addProductToCart(product)}
                         aria-label="Lägg till produkt i varukorg"
                       >
-                        <FaPlus size={12} />
+                        <FaPlus />
                       </button>
                     </>
                   )}

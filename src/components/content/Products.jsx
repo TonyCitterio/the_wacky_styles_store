@@ -66,11 +66,9 @@ const Products = ({
                       <button
                         className={classes.addAndRemoveButtons}
                         onClick={() => removeProductFromCart(product)}
+                        aria-label="Ta bort produkt från varukorg"
                       >
-                        <FaMinus
-                          size={12}
-                          aria-label="Ta bort produkt från varukorg"
-                        />
+                        <FaMinus />
                       </button>
                       <div className={classes.quantity}>
                         <p>{getProductInCart(product.id)}</p>
@@ -80,7 +78,7 @@ const Products = ({
                         onClick={() => addProductToCart(product)}
                         aria-label="Lägg till produkt i varukorg"
                       >
-                        <FaPlus size={12} />
+                        <FaPlus />
                       </button>
                     </>
                   )}

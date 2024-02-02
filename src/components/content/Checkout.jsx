@@ -176,7 +176,7 @@ const Checkout = ({
                       onClick={() => removeProductFromCart(product)}
                       aria-label="Ta bort produkt från varukorg"
                     >
-                      <FaMinus size={12} />
+                      <FaMinus />
                     </button>
                     <div className={classes.quantity}>
                       <p>{product.quantity}</p>
@@ -185,7 +185,7 @@ const Checkout = ({
                       onClick={() => addProductToCart(product)}
                       aria-label="Lägg till produkt i varukorg"
                     >
-                      <FaPlus size={12} />
+                      <FaPlus />
                     </button>
                   </div>
                 </div>
