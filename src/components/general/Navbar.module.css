@@ -41,6 +41,7 @@
   color: white;
   border: none;
   box-shadow: 0 0 12px 2px #a663cc;
+  font-size: 16px;
 }
 
 .searchContainer input:focus {
