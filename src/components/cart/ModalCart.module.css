@@ -13,8 +13,8 @@
 
 .cart {
   width: clamp(39ch, 65%, 80ch);
-  max-height: 100vh;
-  max-height: 100svh;
+  height: 100vh;
+  height: 100svh;
   background-color: #f6f6f6;
   color: #333;
   overflow-y: auto;
@@ -103,7 +103,7 @@
 }
 
 .buttonContainer button {
-  width: 23px;
+  width: 26px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -188,22 +188,18 @@
 @keyframes fadeInBackdrop {
   from {
     opacity: 0;
-    transform: translateY(-20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 @keyframes fadeOutBackdrop {
   from {
     opacity: 1;
-    transform: translateY(0);
   }
   to {
     opacity: 0;
-    transform: translateY(-20px);
   }
 }
 
