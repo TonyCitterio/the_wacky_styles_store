@@ -3,8 +3,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: 120vh;
+  min-height: 120svh;
   background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: flex-end;
@@ -109,6 +109,7 @@
   align-items: center;
   background-color: #a663cc;
   color: white;
+  font-size: 16px;
   border: none;
   border-radius: 0.3rem;
   cursor: pointer;
