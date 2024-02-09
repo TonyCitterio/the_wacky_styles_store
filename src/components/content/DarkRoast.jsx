@@ -11,7 +11,7 @@ const DarkRoast = ({
   const darkRoast = products.filter((a) => a.roast === "Mörkrost");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const getProductInCart = (id) => {

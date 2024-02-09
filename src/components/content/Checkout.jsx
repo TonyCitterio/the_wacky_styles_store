@@ -28,7 +28,7 @@ const Checkout = ({
   });
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const handelSubmit = (event) => {
@@ -63,11 +63,9 @@ const Checkout = ({
           }
           break;
         case "phoneNumber":
-          if (
-            !/^\d+$/.test(value) ||
-            !(value.length === 9 || value.length === 10)
-          ) {
-            errorMessage = "Vänligen fyll i ett giltigt telefonnummmer";
+          const cleanPhoneNumber = value.replace(/[-\s]/g, "");
+          if (!/^\d{10,11}$/.test(cleanPhoneNumber)) {
+            errorMessage = "Vänligen fyll i ett giltigt telefonnummer";
           }
           break;
         case "street":
@@ -76,7 +74,8 @@ const Checkout = ({
           }
           break;
         case "zip":
-          if (!/^\d+$/.test(value) || value.length !== 5) {
+          const digitsOnlyZip = value.replace(/\s+/g, "");
+          if (!/^\d{5}$/.test(digitsOnlyZip)) {
             errorMessage = "Vänligen ange ett giltigt postnummer";
           }
           break;

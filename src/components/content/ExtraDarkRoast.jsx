@@ -11,7 +11,7 @@ const ExtraDarkRoast = ({
   const extraDarkRoast = products.filter((a) => a.roast === "Extra Mörkrost");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const getProductInCart = (id) => {

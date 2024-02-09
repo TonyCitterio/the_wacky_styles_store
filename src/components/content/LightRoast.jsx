@@ -11,7 +11,7 @@ const LightRoast = ({
   const lightRoast = products.filter((a) => a.roast === "Ljusrost");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const getProductInCart = (id) => {

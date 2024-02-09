@@ -13,7 +13,7 @@ const Products = ({
   const recommendation = products.slice(9, 13);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const getProductInCart = (id) => {
