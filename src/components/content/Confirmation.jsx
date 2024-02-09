@@ -15,7 +15,7 @@ const Confirmation = ({
   const CurrentDate = new Date().toLocaleDateString();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const handleClose = () => {
@@ -44,6 +44,24 @@ const Confirmation = ({
     return email.toLowerCase();
   };
 
+  const formatPhoneNumber = (phoneNumber) => {
+    const digitsOnly = phoneNumber.replace(/\D/g, "");
+    if (digitsOnly.length === 10) {
+      return `${digitsOnly.slice(0, 3)}-${digitsOnly.slice(3)}`;
+    } else if (digitsOnly.length === 11) {
+      return `${digitsOnly.slice(0, 3)}-${digitsOnly.slice(3)}`;
+    }
+    return phoneNumber;
+  };
+
+  const formatZip = (zip) => {
+    const digitsOnly = zip.replace(/\D/g, "");
+    if (digitsOnly.length >= 5) {
+      return `${digitsOnly.slice(0, 3)} ${digitsOnly.slice(3, 5)}`;
+    }
+    return zip;
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.content}>
@@ -67,7 +85,7 @@ const Confirmation = ({
                 Namn: {formatStrings(userData.firstName)}{" "}
                 {formatStrings(userData.lastName)}
               </p>
-              <p>Telefon: {userData.phoneNumber}</p>
+              <p>Telefon: {formatPhoneNumber(userData.phoneNumber)}</p>
               <p>E-post: {formatEmail(userData.email)}</p>
               <p>Orderdatum: {CurrentDate}</p>
             </div>
@@ -79,7 +97,7 @@ const Confirmation = ({
               </p>
               <p>{formatStrings(userData.street)}</p>
               <p>
-                {userData.zip} {formatStrings(userData.city)}
+                {formatZip(userData.zip)} {formatStrings(userData.city)}
               </p>
             </div>
           </div>

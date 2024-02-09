@@ -11,7 +11,7 @@ const MediumRoast = ({
   const mediumRoast = products.filter((a) => a.roast === "Mellanrost");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const getProductInCart = (id) => {
