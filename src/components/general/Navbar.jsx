@@ -152,13 +152,14 @@ const Navbar = ({
                   {searchResults.length > 0
                     ? searchResults.map((result, index) => (
                         <div key={result.id} className={classes.card}>
-                          {result.name}
+                          <p>{result.name}</p>
                           <div className={classes.buttonContainer}>
                             <button
                               onClick={() => removeProductFromCart(result)}
+                              disabled={!cart.some(item => item.id === result.id)}
                               aria-label="Ta bort produkt från varukorg"
                             >
-                              <FaMinus size={12} />
+                              <FaMinus size={18} />
                             </button>
                             <button
                               onClick={() => addProductToCart(result)}
@@ -169,7 +170,7 @@ const Navbar = ({
                                   : null
                               }
                             >
-                              <FaPlus size={12} />
+                              <FaPlus size={18} />
                             </button>
                           </div>
                         </div>

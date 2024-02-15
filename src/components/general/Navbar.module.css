@@ -40,12 +40,12 @@
   background-color: transparent;
   color: white;
   border: none;
-  box-shadow: 0 0 12px 2px #a663cc;
+  box-shadow: 0 0 12px 4px #a663cc;
   font-size: 16px;
 }
 
 .searchContainer input:focus {
-  outline: 3px solid #a663cc;
+  outline: 2px solid #a663cc;
 }
 
 .searchContainer input::placeholder {
@@ -61,7 +61,7 @@
   position: absolute;
   top: calc(100% + 1rem);
   right: 0;
-  background-color: #212529;
+  background-color: #1a1a1d;
   border-radius: 0.3rem;
   border: 1px solid #a663cc;
   box-shadow: 0 1px 6px 3px #a663cc;
@@ -80,34 +80,31 @@
 }
 
 .card p {
-  margin: 0 1rem;
+  margin: 0;
 }
 
 .buttonContainer {
   display: flex;
-  margin-left: 0.75rem;
+  margin-left: 1rem;
 }
 
 .buttonContainer > *:first-child {
-  margin-right: 0.5rem;
+  margin-right: 0.35rem;
 }
 
 .buttonContainer button {
-  height: 24px;
-  width: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #a663cc;
-  color: white;
+  background-color: #1a1a1d;
+  color: #a663cc;
   border: none;
-  border-radius: 0.25rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
 }
 
-.buttonContainer button:hover {
-  background-color: #834ca3;
+.buttonContainer button:disabled {
+  opacity: 0.5;
+  cursor: default; 
 }
 
 .navbarRightSide {
@@ -262,14 +259,5 @@
 @media (max-width: 465px) {
   .bigHeading {
     display: none;
-  }
-}
-
-@media (hover: none), (hover: on-demand) {
-  .buttonContainer button {
-    transition: none;
-  }
-  .buttonContainer button:hover {
-    background-color: #a663cc;
   }
 }
