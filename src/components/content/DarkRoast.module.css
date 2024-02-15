@@ -134,14 +134,14 @@
 }
 
 .buttonContainer {
-  height: 30px;
+  height: 31px;
   display: flex;
   margin-top: 0.1rem;
 }
 
 .onlyBuyButton {
-  width: 140px;
-  height: 30px;
+  width: 142px;
+  height: 31px;
   color: white;
   background-color: #a663cc;
   font-size: 1.1rem;
@@ -156,8 +156,8 @@
 }
 
 .addAndRemoveButtons {
-  width: 30px;
-  height: 30px;
+  width: 31px;
+  height: 31px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,7 +176,7 @@
 .quantity {
   margin-inline: 3px;
   width: 74px;
-  height: 30px;
+  height: 31px;
   display: flex;
   justify-content: center;
   align-items: center;
